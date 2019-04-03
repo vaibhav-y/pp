@@ -10,7 +10,7 @@ static_assert(false, "Won't include multiple solution headers together!")
 #include <map>
 #include <vector>
 
-    class Solution {
+class Solution {
 public:
   std::vector<int> twoSum(std::vector<int> &nums, int target) {
     std::map<int, int> H;
