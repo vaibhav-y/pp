@@ -1,0 +1,88 @@
+* [[https://leetcode.com/problems/longest-palindromic-substring/][Longest Palindromic Substring]]
+
+** =ITERATION 1=: Longest Common Substring Based technique =O(n^2)= time, =O(n^2)= space
+
+The key observation here is that a string and its reverse both contain the
+palindrome, this boils down to finding the longest common substring of a
+string and its reverse.
+
+We can observe that if we construct a 2D matrix matching the string and its
+reverse, all palindromic substrings occur on diagonal lines, and each diagonal
+"streak" is its own palindome.
+
+The matrix =M= is constructed as follows, for the input =S=:
+- ~M[i][j] = 1 if: S[j] == S[len(S) - i]~
+- ~M[i][j] = 0 otherwise~
+
+For example for the string ="ilikeracecars"= we get the following matrix:
+
+#+BEGIN_SRC
+\ i l i k e r a c e c a r s
+s 0 0 0 0 0 0 0 0 0 0 0 0 1
+r 0 0 0 0 0 1 0 0 0 0 0 1 0
+a 0 0 0 0 0 0 1 0 0 0 1 0 0
+c 0 0 0 0 0 0 0 1 0 1 0 0 0
+e 0 0 0 0 1 0 0 0 1 0 0 0 0
+c 0 0 0 0 0 0 0 1 0 1 0 0 0
+a 0 0 0 0 0 0 1 0 0 0 1 0 0
+r 0 0 0 0 0 1 0 0 0 0 0 1 0
+e 0 0 0 0 1 0 0 0 1 0 0 0 0
+k 0 0 0 1 0 0 0 0 0 0 0 0 0
+i 1 0 1 0 0 0 0 0 0 0 0 0 0
+l 0 1 0 0 0 0 0 0 0 0 0 0 0
+i 1 0 1 0 0 0 0 0 0 0 0 0 0
+#+END_SRC
+
+This finds both palindromic substrings: ="ili"= and ="racecar"=.
+
+*** Psuedo Code
+
+The C++ code uses a dense matrix, this could a point of optimization if the
+size of the palindomes is much smaller than the input string size. But that
+assumption is hard to make without data, so I don't make it.
+
+#+BEGIN_SRC python3
+def longestPalindromicSubstring(input:str) -> str:
+  if len(input) < 2:
+    return input
+  length = len(input)
+
+  matched = matrix(length, length)
+
+  # First populate the matrix with markers with matches found
+  for i in range(0, length):
+    for j in range(0, length):
+      matched[i][j] = input[length - 1 - i] == input[j]
+
+  # Now that matches table is generated, walk the matrix row by row and look
+  # for diagonal sequences of `True` values
+
+  # By default return a single length match in the first char (trivial case)
+  best_start = (0, 0)
+  best_end = (0, 0)
+
+  for i in range(0, length):
+    for j in range(0, length):
+      if matched[i][j]:
+        row = i
+        col = j
+        while matched[row][col]:
+          # Traverse diagonally right-and-downward
+          # Unmarking items we've already seen (since no two solutions overlap)
+          ...
+          # Update best_start, best_end
+
+  start_row, start_col = best_start
+  end_row, end_col = best_end
+
+  # Match was in upper half of matirx
+  if start_row < end_row:
+    return input[start_row:end_row]
+
+  # Match was in lower half of matrix
+  return input[start_col:end_col]
+#+END_SRC
+
+* TODO
+
+Need a faster implementation
