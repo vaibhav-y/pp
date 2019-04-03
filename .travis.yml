@@ -2,7 +2,7 @@ language: cpp
 
 env:
   global:
-    - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
+    - CXX_FLAGS="-Wall -pedantic -Werror"
 
 matrix:
   include:
@@ -26,9 +26,9 @@ before_install:
 
 install:
   - cd /usr/src/gtest
-  - cmake .
-  - cmake --build .
-  - cp *.a /usr/lib/
+  - sudo cmake CMakeLists.txt
+  - sudo cmake --build
+  - sudo cp *.a /usr/lib/
 
 script:
   - mkdir -p build
