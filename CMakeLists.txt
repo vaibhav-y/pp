@@ -13,7 +13,8 @@ set (TEST_TARGETS
      001-Two-Sum
      002-Add-Two-Numbers
      003-Longest-Substring-Without-Repeating-Characters
-     004-Median-Of-Two-Sorted-Arrays)
+     004-Median-Of-Two-Sorted-Arrays
+     005-Longest-Palindromic-Substring)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t
