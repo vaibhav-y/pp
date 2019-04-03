@@ -2,6 +2,8 @@
 #include "addTwoNumbers.h"
 #include <gtest/gtest.h>
 
+using p002::Solution;
+
 TEST(P002_AddTwoNumbers, BothAreNull) {
   Solution sol;
   ListNode *l1 = nullptr;
@@ -11,7 +13,7 @@ TEST(P002_AddTwoNumbers, BothAreNull) {
 }
 
 TEST(P002_AddTwoNumbers, OneListIsNull) {
-  Solution sol;
+  p002::Solution sol;
 
   ListNode *l1 = new ListNode(2);
   l1->next = new ListNode(4);

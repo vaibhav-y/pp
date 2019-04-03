@@ -2,20 +2,19 @@
 
 #if defined(INCLUDED_SOLUTION_HEADER)
 static_assert(false, "Won't include multiple solution headers together!")
-#endif // INCLUDED_SOLUTION_HEADER
-
-#if !defined(INCLUDED_SOLUTION_HEADER)
+#else
 #define INCLUDED_SOLUTION_HEADER "001"
 
 #include <map>
 #include <vector>
 
+namespace p001 {
 class Solution {
 public:
   std::vector<int> twoSum(std::vector<int> &nums, int target) {
     std::map<int, int> H;
 
-    for (int i = 0; i < nums.size(); ++i) {
+    for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
       auto it = H.find(nums[i]);
       if (it != H.end() && it->second != i) {
         return {it->second, i};
@@ -25,5 +24,6 @@ public:
     return {};
   }
 };
+} // namespace p001
 
 #endif // INCLUDED_SOLUTION_HEADER

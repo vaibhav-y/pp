@@ -5,6 +5,9 @@
     && mkdir ./build \
     && echo "Done."
 
-cmake -Bbuild -H.
-make -C build
-CTEST_OUTPUT_ON_FAILURE=1 GTEST_COLOR=1 make -C build test
+(
+    CC=/usr/local/bin/clang \
+    CXX=/usr/local/bin/clang++ \
+    cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Bbuild -H. && \
+    ninja -C build && \
+    CTEST_OUTPUT_ON_FAILURE=1 GTEST_COLOR=1 ninja -C build test)
