@@ -10,11 +10,25 @@ matrix:
       dist: xenial
       compiler: clang
       sudo: true
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+           packages:
+            - cmake-data
+            - cmake
+            - libgtest-dev
 
 before_install:
   - export CXX_FLAGS=${CXX_FLAGS}" "${ENV_CXX_FLAGS}
   - export CTEST_OUTPUT_ON_FAILURE=1
   - export GTEST_COLOR=1
+
+install:
+  - cd /usr/src/gtest
+  - cmake .
+  - cmake --build .
+  - cp *.a /usr/lib/
 
 script:
   - mkdir -p build
