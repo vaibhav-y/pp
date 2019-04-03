@@ -1,0 +1,2 @@
+compiler: clang
+script: ./build-and-test.sh
