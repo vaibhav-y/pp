@@ -12,12 +12,12 @@ matrix:
       sudo: true
       addons:
         apt:
-          sources:
-            - ubuntu-toolchain-r-test
-           packages:
-            - cmake-data
-            - cmake
-            - libgtest-dev
+          update: true
+          sources: ['ubuntu-toolchain-r-test']
+          packages:
+          - cmake-data
+          - cmake
+          - libgtest-dev
 
 before_install:
   - export CXX_FLAGS=${CXX_FLAGS}" "${ENV_CXX_FLAGS}
