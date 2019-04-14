@@ -63,3 +63,7 @@ TEST_F(P005_LongestPalindromicSubstring, FormerHalf1) {
 
   EXPECT_EQ(sol.longestPalindrome("racecarsilike"), "racecar");
 }
+
+TEST_F(P005_LongestPalindromicSubstring, LeetCode1) {
+  EXPECT_EQ(sol.longestPalindrome("aacdefcaa"), "aa");
+}
