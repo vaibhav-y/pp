@@ -8,7 +8,10 @@ recycle the idea to dyamic programming.
 
 Consider ~X = S[i:j]~ where =S= is the input string.
 - If X is a palindrome:
-- Try 
+  - Check left and right char on either side and expand. Base cases:
+    - All single length strings are odd sized palindromes
+    - Length 2 strings where first and second character are equal
+      - Length 0 is the ideal case, but that involves a lot of hackery...
 
 ** =ITERATION-2=:
 *Iteratively scan left and right of each character*
