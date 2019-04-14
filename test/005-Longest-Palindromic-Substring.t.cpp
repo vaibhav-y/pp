@@ -67,3 +67,9 @@ TEST_F(P005_LongestPalindromicSubstring, FormerHalf1) {
 TEST_F(P005_LongestPalindromicSubstring, LeetCode1) {
   EXPECT_EQ(sol.longestPalindrome("aacdefcaa"), "aa");
 }
+
+// Failed with -fsanitize=address on leetcode lol
+TEST_F(P005_LongestPalindromicSubstring, LeetCode2) {
+  EXPECT_EQ(sol.longestPalindrome("babaddtattarrattatddetartrateedredividerb"),
+            "ddtattarrattatdd");
+}

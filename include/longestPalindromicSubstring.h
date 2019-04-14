@@ -16,7 +16,7 @@ private:
     auto cit = s.cbegin();
     auto crit = s.crbegin();
 
-    while (*crit == *cit && cit != s.cend()) {
+    while (cit != s.cend() && crit != s.crend() && *crit == *cit) {
       ++cit;
       ++crit;
     }

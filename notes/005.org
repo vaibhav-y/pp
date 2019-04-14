@@ -1,7 +1,8 @@
 * [[https://leetcode.com/problems/longest-palindromic-substring/][Longest Palindromic Substring]]
 
-** =ITERATION 2=: Iteratively scan left and right of each character
-[[ITER_1]] doesn't work because the longest common substring between a
+** =ITERATION-2=:
+*Iteratively scan left and right of each character*
+[[ITERATION-1]] doesn't work because the longest common substring between a
 string and its reverse need not be a palindrome.
 
 Case in point: ="aacdefcaa"=
@@ -27,7 +28,8 @@ def longestPalindromicSubstring(input:str) -> str:
 
 
 #+NAME: ITER_1
-** =ITERATION 1=: Longest Common Substring Based technique =O(n^2)= time, =O(n^2)= space
+** =ITERATION-1=
+*Longest Common Substring Based technique =O(n^2)= time, =O(n^2)= space*
 
 The key observation here is that a string and its reverse both contain the
 palindrome, this boils down to finding the longest common substring of a
