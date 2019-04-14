@@ -73,3 +73,23 @@ TEST_F(P005_LongestPalindromicSubstring, LeetCode2) {
   EXPECT_EQ(sol.longestPalindrome("babaddtattarrattatddetartrateedredividerb"),
             "ddtattarrattatdd");
 }
+
+// Time Limit Exceeded
+TEST_F(P005_LongestPalindromicSubstring, LeetCode3) {
+  EXPECT_EQ(
+      sol.longestPalindrome(
+          "flsuqzhtcahnyickkgtfnlyzwjuiwqiexthpzvcweq"
+          "zeqpmqwkydhsfipcdrsjkefehhesubkirhalgnevju"
+          "gfohwnlhbjfewiunlgmomxkafuuokesvfmcnvseixk"
+          "kzekuinmcbmttzgsqeqbrtlwyqgiquyylaswlgfflrezaxtjobltcnpjsaslyviviosx"
+          "orjsfncqirsjpkgajkfpoxxmvsyynbbovieoothpjgncfwcvpkvjcmrcuoronrfjcppb"
+          "isqbzkgpnycqljpjlgeciaqrnqyxzedzkqpqsszovkgtcgxqgkflpmrikksaupukdvkz"
+          "bltvefitdegnlmzeirotrfeaueqpzppnsjpspgomyezrlxsqlfcjrkglyvzvqakhtvfm"
+          "eootbtbwfhqucbnuwznigoyatvkocqmbtqghybwrhmyvvuchjpvjckiryvjfxabezchy"
+          "nfxnpqaeampvaapgmvoylyutymdhvhqfmrlmzkhuhupizqiujpwzarnszrexpvgdmtox"
+          "vjygjpmiadzdcxtggwamkbwrkeplesupagievwsaaletcuxtpsxmbmeztcylsjxvhzrq"
+          "izdmgjfyftpzpgxateopwvynljzffszkzzqgofdlwyknqfruhdkvmvrrjpijcjomnrjj"
+          "ubfccaypkpfokohvkqndptciqqiscvmpozlyyrwobeuazsawtimnawquogrohcrnmexi"
+          "wvjxgwhmtpykqlcfacuadyhaotmmxevqwarppknoxthsmrrknu"),
+      "ljpjl");
+}
