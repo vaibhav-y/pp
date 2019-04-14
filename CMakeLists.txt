@@ -34,6 +34,7 @@ foreach (TEST ${TEST_TARGETS})
     target_compile_features(${TEST}.t PRIVATE cxx_std_17)
     target_compile_options(${TEST}.t
          PRIVATE
+         -g -O0
          -Wall -Werror
          -fcolor-diagnostics)
 

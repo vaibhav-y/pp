@@ -12,37 +12,29 @@ static_assert(false, "Won't include multiple solution headers together!")
 namespace p005 {
 class Solution {
 private:
-  inline bool isPalindrome(const std::string &s) const {
-    auto cit = s.cbegin();
-    auto crit = s.crbegin();
-
-    while (cit != s.cend() && crit != s.crend() && *crit == *cit) {
-      ++cit;
-      ++crit;
+  inline std::string grow(std::string src, size_t begin, size_t end) {
+    while (begin >= 0 && end < src.size() && src[begin] == src[end]) {
+      --begin;
+      ++end;
     }
-
-    return cit == s.cend();
+    return src.substr(begin + 1, end - begin + 1);
   }
 
 public:
   std::string longestPalindrome(std::string s) {
-    size_t length = s.size();
-    if (length < 2) {
+    if (s.size() < 2) {
       return s;
     }
 
-    // Scan string for palindromes of various lengths
-    for (size_t len = 1; len < length; ++len) {
-      for (size_t start = 0; start + len - 1 < length; ++start) {
-        auto substring = s.substr(start, len);
-        if (isPalindrome(substring)) {
-          return substring;
-        }
-      }
+    std::string longest{s[0]};
+    for (size_t c = 0; c < s.size(); ++c) {
+      std::string temp{grow(s, c, c)};
+      longest = temp.size() > longest.size() ? temp : longest;
+      temp = grow(s, c, c + 1);
+      longest = temp.size() > longest.size() ? temp : longest;
     }
 
-    // UNREACHABLE
-    return {};
+    return longest;
   }
 };
 } // namespace p005
