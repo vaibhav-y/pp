@@ -32,7 +32,7 @@ public:
     }
 
     // Scan string for palindromes of various lengths
-    for (size_t len = length; len != 0; --len) {
+    for (size_t len = 1; len < length; ++len) {
       for (size_t start = 0; start + len - 1 < length; ++start) {
         auto substring = s.substr(start, len);
         if (isPalindrome(substring)) {
