@@ -7,7 +7,7 @@
 
 class P001_TwoSutm : public ::testing::Test {
 protected:
-  Solution sol;
+  p001::Solution sol;
 };
 
 TEST_F(P001_TwoSutm, TC0) {

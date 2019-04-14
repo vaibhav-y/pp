@@ -4,7 +4,7 @@
 
 class P003_LongestSubstringWithoutRepeatingCharacters : public ::testing::Test {
 protected:
-  Solution sol;
+  p003::Solution sol;
 };
 
 TEST_F(P003_LongestSubstringWithoutRepeatingCharacters, EmptyStr) {

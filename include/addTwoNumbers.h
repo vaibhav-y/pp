@@ -1,13 +1,12 @@
-#include "Common.h"
-
 #if defined(INCLUDED_SOLUTION_HEADER)
 static_assert(false, "Won't include multiple solution headers together!")
-#endif // INCLUDED_SOLUTION_HEADER
-
-#if !defined(INCLUDED_SOLUTION_HEADER)
+#else
 #define INCLUDED_SOLUTION_HEADER "002"
 
-    class Solution {
+#include "Common.h"
+
+namespace p002 {
+class Solution {
 public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
     if (!l1 && !l2) {
@@ -62,5 +61,5 @@ public:
     return head;
   }
 };
-
+} // namespace p002
 #endif // INCLUDED_SOLUTION_HEADER
