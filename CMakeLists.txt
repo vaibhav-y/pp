@@ -26,7 +26,9 @@ foreach (TEST ${TEST_TARGETS})
     target_compile_features(${TEST} PRIVATE cxx_std_17)
     target_compile_options(${TEST}
          PRIVATE
+         -g -O0
          -Wall -Werror
+         -fsanitize=address
          -fcolor-diagnostics)
 
     target_compile_features(${TEST}.t PRIVATE cxx_std_17)

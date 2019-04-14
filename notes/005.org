@@ -1,5 +1,32 @@
 * [[https://leetcode.com/problems/longest-palindromic-substring/][Longest Palindromic Substring]]
 
+** =ITERATION 2=: Iteratively scan left and right of each character
+[[ITER_1]] doesn't work because the longest common substring between a
+string and its reverse need not be a palindrome.
+
+Case in point: ="aacdefcaa"=
+
+This time the property used is: If =X= is palindromic: you can look 1 character
+to the left and right of it to try and extend it. if =X= isn't palindromic,
+we try to extend it to either the left, or the right.
+
+*** Psuedo Code:
+
+#+BEGIN_SRC python3
+def longestPalindromicSubstring(input:str) -> str:
+  if len(input) < 2:
+    return input
+
+  length = len(input)
+  palindromes = []
+  for maxLen in range(0, length):
+    for start in range(0, length - maxLen + 1):
+      if isPalindrome(input[start:start + maxLen - 1]):
+        return input[start:start + maxLen - 1]
+#+END_SRC
+
+
+#+NAME: ITER_1
 ** =ITERATION 1=: Longest Common Substring Based technique =O(n^2)= time, =O(n^2)= space
 
 The key observation here is that a string and its reverse both contain the
@@ -83,6 +110,3 @@ def longestPalindromicSubstring(input:str) -> str:
   return input[start_col:end_col]
 #+END_SRC
 
-* TODO
-
-Need a faster implementation
