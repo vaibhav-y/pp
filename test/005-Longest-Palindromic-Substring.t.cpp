@@ -74,7 +74,7 @@ TEST_F(P005_LongestPalindromicSubstring, LeetCode2) {
             "ddtattarrattatdd");
 }
 
-// Time Limit Exceeded
+// Time Limit Exceeded, ~100ms O(n^3)
 TEST_F(P005_LongestPalindromicSubstring, LeetCode3) {
   EXPECT_EQ(
       sol.longestPalindrome(

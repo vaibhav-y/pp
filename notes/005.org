@@ -4,12 +4,16 @@
 *Dreaded dynamic programming*
 
 [[#ITERATION-2][Iteration 2]] failed because its an =O(n^3)= algorithm. We can, however,
-recycle the idea to 
+recycle the idea to dyamic programming.
+
+Consider ~X = S[i:j]~ where =S= is the input string.
+- If X is a palindrome:
+- Try 
 
 ** =ITERATION-2=:
 *Iteratively scan left and right of each character*
 
-[[iteration-1]] doesn't work because the longest common substring between a
+[[#ITERATION-1][Iteration-1]] doesn't work because the longest common substring between a
 string and its reverse need not be a palindrome.
 
 Case in point: ="aacdefcaa"=
