@@ -14,12 +14,13 @@ set (TEST_TARGETS
      002-Add-Two-Numbers
      003-Longest-Substring-Without-Repeating-Characters
      004-Median-Of-Two-Sorted-Arrays
-     005-Longest-Palindromic-Substring)
+     005-Longest-Palindromic-Substring
+     006-ZigZag-Conversion)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t
                    test/${TEST}.t.cpp)
-    
+
     add_library(${TEST} src/${TEST}.cpp)
     target_include_directories(${TEST} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
