@@ -32,7 +32,7 @@ TEST_F(P006_ZigZagConversion, Generic0) {
 }
 
 TEST_F(P006_ZigZagConversion, Generic1) {
-  EXPECT_EQ(sol.convert("ABABABABABABABA", 2), "AAAAAAABBBBBBBA");
+  EXPECT_EQ(sol.convert("ABABABABABABABA", 2), "AAAAAAAABBBBBBB");
 }
 
 TEST_F(P006_ZigZagConversion, LeetCode1) {

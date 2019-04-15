@@ -24,7 +24,7 @@ public:
     // Live: http://coliru.stacked-crooked.com/a/c04552b29c1542ff
     // 1. -O0 : (string 28ms vs oss: 26ms)
     // 2. -O3 : (string: 1.6ms vs oss: 7.x ms)
-    std::vector<std::string> outputRows{numBlocks};
+    std::vector<std::string> outputRows{static_cast<size_t>(numRows)};
 
     // reserve memory because we have an upper bound on the number of
     // chars per row
@@ -37,16 +37,16 @@ public:
       // to start at a column index
       for (size_t idx = 0; idx != numRows - 1; ++idx) {
         if (offset < s.size()) {
-          outputRows[idx] += s[offset];
-          ++offset;
+          outputRows[idx] += s[offset++];
         }
       }
 
-      // Now traverse the diagnol, all the way up
-      for (size_t idx = numRows - 2; idx !=  1; --idx) {
-        if (offset < s.size()) {
-          outputRows[idx] += s[offset];
-          ++offset;
+      if (numRows > 2) {
+        // Now traverse the diagnol, all the way up
+        for (size_t idx = numRows - 2; idx !=  1; --idx) {
+          if (offset < s.size()) {
+            outputRows[idx] += s[offset++];
+          }
         }
       }
     }
