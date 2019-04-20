@@ -2,8 +2,8 @@
 static_assert(false, "Won't include multiple solution headers together");
 #else
 
-#include <vector>
 #include <string>
+#include <vector>
 
 namespace p006 {
 class Solution {
@@ -37,16 +37,14 @@ public:
     for (size_t blkIdx = 0, offset = 0; blkIdx < numBlocks; ++blkIdx) {
       // First traverse the column, ever iteration is guaranteed
       // to start at a column index
-      for (size_t idx = 0;
-           idx < numRows && offset < s.size();
+      for (size_t idx = 0; idx < numRows && offset < s.size();
            ++idx, ++offset) {
         outputRows[idx] += s[offset];
       }
 
       if (numRows > 2) {
         // Now traverse the diagnol, all the way up
-        for (size_t idx = numRows - 2;
-             idx > 0 && offset < s.size();
+        for (size_t idx = numRows - 2; idx > 0 && offset < s.size();
              --idx, ++offset) {
           outputRows[idx] += s[offset];
         }
