@@ -35,6 +35,10 @@ TEST_F(P006_ZigZagConversion, Generic1) {
   EXPECT_EQ(sol.convert("ABABABABABABABA", 2), "AAAAAAAABBBBBBB");
 }
 
+TEST_F(P006_ZigZagConversion, Generic2) {
+  EXPECT_EQ(sol.convert("INVARIANT", 9), "INVARIANT");
+}
+
 TEST_F(P006_ZigZagConversion, LeetCode1) {
   EXPECT_EQ(sol.convert("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR");
 }
