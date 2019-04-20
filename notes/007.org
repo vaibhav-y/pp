@@ -1,0 +1,13 @@
+* [[https://leetcode.com/problems/reverse-integer/][Reverse Integer]]
+
+** =ITERATION-1=
+
+The question asks us to reverse the digits of a *32 bit signed integer*, and
+return 0 if the reversed integer overflows.
+
+The input range is =[−2^31,  2^31 − 1]=, we
+
+Initial thoughts on this:
+- Reversing an integer is straight forward, assuming we aren't dealing with
+  overflows or underflows
+- Can I efficiently detect overflows?
