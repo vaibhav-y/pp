@@ -26,7 +26,7 @@ We can observe the following:
 Altogether, there are =2n-2= elements for every pair of (column, diagnoal).
 
 Hence:
-1. If a column starts at =(r, c)=, we move down it for =n= elements.
+1. If a column starts at =(r, c)=, we move down along it for =n= elements.
 2. Then we move up a column for th next =n - 2= elements
 
 As far as data structures for this go, a singly-nested list should suffice, and
@@ -34,32 +34,31 @@ lead to a linear time solution. (We only read each character twice)
 
 *** Psuedo Code
 
-#+BEGIN_SRC python3
+#+BEGIN_SRC python
 def zigzag(input:str, numRows:int) -> str:
-  from math import ceil
+    from math import ceil
+    # +1 for the last pair where one of col or diagnoal are incomplete
+    nBlocks = ceil(len(input) / (2 * numRows - 2))
 
-  # +1 for the last pair where one of col or diagnoal are incomplete
-  nBlocks = ceil(len(input) / (2 * numRows - 2))
-
-  outputRows = [[] for i in range(0,nBlocks)]
-  offset = 0
-  for blk in range(0, nBlocks):
-    # [0, n - 1] the column is traversed
-    for idx in range(0, numRows):
-      if offset < len(input):
-        outputRows[idx].append(input[offset])
-        offset += 1
+    outputRows = [[] for i in range(0, nBlocks)]
+    offset = 0
+    for blk in range(0, nBlocks):
+        # [0, n - 1] the column is traversed
+        for idx in range(0, numRows):
+            if offset < len(input):
+                outputRows[idx].append(input[offset])
+                offset += 1
 
     # [n - 2, 1] the diagnoal is traversed
     for idx in range(numRows - 2, 0, -1):
-      if offset < len(input):
-        outputRows[idx].append(input[offset])
-        offset += 1
+        if offset < len(input):
+            outputRows[idx].append(input[offset])
+            offset += 1
 
-  output = ""
-  for row in outputRows:
-    for char_ in row:
-      output += char_
-  return output
+    output = ""
+    for row in outputRows:
+        for char_ in row:
+            output += char_
+    return output
 #+END_SRC
 

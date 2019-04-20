@@ -9,10 +9,12 @@ namespace p006 {
 class Solution {
 public:
   std::string convert(std::string s, int numRows) {
-    // Fast path out for numRows = 0 or 1 (0 isn't valid tho)
-    // strings of size 2 and below also are invariant under this
-    // transformation
-    if (numRows < 2 || s.size() < 3) {
+    // Fast path out for cass when the string will be invariant
+    // under this transform:
+    // 1. Fewer than 2 rows
+    // 2. Fewer than 2 chars
+    // 3. Fewer chars than rows
+    if (numRows < 2 || s.size() < 3 || s.size() <= numRows) {
       return s;
     }
 
@@ -35,18 +37,18 @@ public:
     for (size_t blkIdx = 0, offset = 0; blkIdx < numBlocks; ++blkIdx) {
       // First traverse the column, ever iteration is guaranteed
       // to start at a column index
-      for (size_t idx = 0; idx != numRows - 1; ++idx) {
-        if (offset < s.size()) {
-          outputRows[idx] += s[offset++];
-        }
+      for (size_t idx = 0;
+           idx < numRows && offset < s.size();
+           ++idx, ++offset) {
+        outputRows[idx] += s[offset];
       }
 
       if (numRows > 2) {
         // Now traverse the diagnol, all the way up
-        for (size_t idx = numRows - 2; idx !=  1; --idx) {
-          if (offset < s.size()) {
-            outputRows[idx] += s[offset++];
-          }
+        for (size_t idx = numRows - 2;
+             idx > 0 && offset < s.size();
+             --idx, ++offset) {
+          outputRows[idx] += s[offset];
         }
       }
     }
