@@ -1,5 +1,49 @@
 * [[https://leetcode.com/problems/reverse-integer/][Reverse Integer]]
 
+** =ITERATION-2=
+Okay, the overflow detection in [[#ITERATION-1][Iteration 1]] was flawed.
+Overflow doesn't always lead to a sign flip.
+
+For example:
+
+#+BEGIN_CODE python -i
+>>> val = 964632435
+>>> val > 2**31
+False
+>>> val * 10 > 2**31
+True
+>>> (val * 10) / 2**31
+4.491919814608991
+>>> int((val * 10) / 2**31)
+4
+>>> (val * 10) % 2**31
+1056389758
+#+END_CODE
+
+The simpler and more obvious way to think about this should've been:
+
+an overflow can occur when we try to go to compute the next value of the
+reversed integer, i.e. if the variable is called =rev=
+
+=rev * 10 + inp % 10= exceeds bounds on left or right
+
+Assuming the bounds for the environment are =MAX= and =MIN=, we need to check
+for either of these to hold, for overflow to occur:
+
+1. ~rev >= (MAX - inp % 10) / 10~, or
+2. ~rev <= (MIN - inp % 10) / 10~
+
+#+BEGIN_CODE python -i
+>>> rev = 964632435
+>>>
+>>> # Check overflow for all possible remainders
+...
+>>> all([ val > int((2 ** 31 - i)/ 10)for i in range(0, 10) ])
+True
+#+END_CODE
+
+
+
 ** =ITERATION-1=
 
 The question asks us to reverse the digits of a *32 bit signed integer*, and
@@ -7,7 +51,29 @@ return 0 if the reversed integer overflows.
 
 The input range is =[−2^31,  2^31 − 1]=, we
 
+#+BEGIN_QUOTE
+Note:
+ Assume we are dealing with an environment which could only store integers
+ within the 32-bit signed integer range: [−231,  231 − 1].
+ For the purpose of this problem, assume that your function returns 0 when the
+ reversed integer overflows.
+#+END_QUOTE
+So that pretty much seals all hopes of casting it up to 64bits and reversing
+that.
+
+
 Initial thoughts on this:
 - Reversing an integer is straight forward, assuming we aren't dealing with
-  overflows or underflows
+  overflows or underflows.
+   - C++'s definition of the =operator%= helps out out here since it is
+     defined to satisfy an invariance relation with =operator/=, which is:
+     ~a = (a / b) * b + (a % b)~
+     ~-12 % 10 = -2~ because =operator/= rounds towards 0 for integral types
+
 - Can I efficiently detect overflows?
+  - Yes, you have to detect sign reversals while reversing the number
+  - I have to think about why this can't be thrown to the end of the loop,
+    but I *feel*, that it is possible for a chaotic sequence of sign flips to
+    occur if the number is big enough. But I have to come up with an example
+    for that. Plus we get to gamble on branch prediction inside the loop :D
+    for that sweet performance boost / bust
