@@ -15,7 +15,8 @@ set (TEST_TARGETS
      003-Longest-Substring-Without-Repeating-Characters
      004-Median-Of-Two-Sorted-Arrays
      005-Longest-Palindromic-Substring
-     006-ZigZag-Conversion)
+     006-ZigZag-Conversion
+     007-Reverse-Integer)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t
