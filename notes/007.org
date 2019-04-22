@@ -6,7 +6,7 @@ Overflow doesn't always lead to a sign flip.
 
 For example:
 
-#+BEGIN_CODE python -i
+#+BEGIN_SRC python -i
 >>> val = 964632435
 >>> val > 2**31
 False
@@ -18,7 +18,7 @@ True
 4
 >>> (val * 10) % 2**31
 1056389758
-#+END_CODE
+#+END_SRC
 
 The simpler and more obvious way to think about this should've been:
 
@@ -28,21 +28,14 @@ reversed integer, i.e. if the variable is called =rev=
 =rev * 10 + inp % 10= exceeds bounds on left or right
 
 Assuming the bounds for the environment are =MAX= and =MIN=, we need to check
-for either of these to hold, for overflow to occur:
+for, either of these to hold, for overflow to occur:
 
-1. ~rev >= (MAX - inp % 10) / 10~, or
-2. ~rev <= (MIN - inp % 10) / 10~
-
-#+BEGIN_CODE python -i
->>> rev = 964632435
->>>
->>> # Check overflow for all possible remainders
-...
->>> all([ val > int((2 ** 31 - i)/ 10)for i in range(0, 10) ])
-True
-#+END_CODE
+1. ~rev > (MAX - inp % 10) / 10~, -or-
+2. ~rev < (MIN - inp % 10) / 10~
 
 
+
+max(computable)
 
 ** =ITERATION-1=
 
