@@ -11,10 +11,8 @@ protected:
 
 INSTANTIATE_TEST_CASE_P(
     AtoiTest, P008_CustomAtoi,
-    ::testing::Values(std::make_pair("42", 42),
-                      std::make_pair("02", 2),
-                      std::make_pair("20", 20),
-                      std::make_pair("-123", -123),
+    ::testing::Values(std::make_pair("42", 42), std::make_pair("02", 2),
+                      std::make_pair("20", 20), std::make_pair("-123", -123),
                       std::make_pair("-123", -123),
                       std::make_pair("                     -562", -562),
                       std::make_pair("                 52", 52),
@@ -26,8 +24,7 @@ INSTANTIATE_TEST_CASE_P(
                       std::make_pair("-2147483648", -2147483648),
                       std::make_pair("2147483648", 2147483647),
                       std::make_pair("2147483646", 2147483646),
-                      std::make_pair("+214748364", 214748364)
-));
+                      std::make_pair("+214748364", 214748364)));
 
 TEST_P(P008_CustomAtoi, Generic) {
   EXPECT_EQ(sol.myAtoi(GetParam().first), GetParam().second);

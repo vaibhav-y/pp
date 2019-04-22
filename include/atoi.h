@@ -39,8 +39,8 @@ private:
     while (*cit >= '0' && *cit <= '9') {
       int rem = sign * (*cit - '0');
       if (checkOverflow(result, rem)) {
-        return sign == 1 ?
-          std::numeric_limits<int>::max() : std::numeric_limits<int>::min();
+        return sign == 1 ? std::numeric_limits<int>::max()
+                         : std::numeric_limits<int>::min();
       }
       result = 10 * result + rem;
       ++cit;
