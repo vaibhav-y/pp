@@ -17,7 +17,8 @@ set (TEST_TARGETS
      005-Longest-Palindromic-Substring
      006-ZigZag-Conversion
      007-Reverse-Integer
-     008-String-To-Integer-Atoi)
+     008-String-To-Integer-Atoi
+     009-Palindrome-Number)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t

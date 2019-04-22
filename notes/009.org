@@ -1,0 +1,12 @@
+* [[https://leetcode.com/problems/palindrome-number][Palindromic Number]]
+
+This is a bad question. Negative numbers can also be palindromes but this
+problem apparently wants us to treat the integer parameter as a string and then
+check for palindrome-ness.
+
+** =ITERATION-1=
+There is no need to reverse the whole number. Reversing just half of it is
+enough:
+
+1. If there are an even number of digits, both halves are equal
+2. Odd digit counts means =reversed/10= is the same as =input=
