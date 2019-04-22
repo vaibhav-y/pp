@@ -1,0 +1,17 @@
+* [[https://leetcode.com/problems/string-to-integer-atoi/][String to Integer (atoi)]]
+
+This question asks us to convert a given string to an integer, assuming the
+machine runnning the code has no support for integer types wider than 32 bits.
+
+Since this write-up comes after my submitting the solution, instead of running
+along with the implementation (as has been tradition till now), I'll jump into
+implementation details.
+
+** Implementation
+
+From what the problem suggests we're to parse an integer prefixed with spaces
+and a sign. So we're to write the write the state machine to capture:
+=/^\s*((-|+)?\d+)/=. The only other trick is to check for overflow on the fly,
+while constructing the numbers.
+
+There isn't much else to do here.
