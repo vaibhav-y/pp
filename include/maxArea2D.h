@@ -12,8 +12,8 @@ public:
       return 0;
     }
 
-    int i = 0, j = height.size();
-    int maximum = -1;
+    int i = 0, j = height.size() - 1;
+    int maximum = 0;
     while (i < j) {
       maximum = std::max(maximum, std::min(height[j], height[i]) * (j - i));
       if (height[i] < height[j]) {
