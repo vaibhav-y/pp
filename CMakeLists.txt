@@ -18,7 +18,8 @@ set (TEST_TARGETS
      006-ZigZag-Conversion
      007-Reverse-Integer
      008-String-To-Integer-Atoi
-     009-Palindrome-Number)
+     009-Palindrome-Number
+     011-Container-With-Most-Water)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t
