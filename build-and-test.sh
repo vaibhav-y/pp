@@ -5,8 +5,8 @@
     && mkdir ./build \
     && echo "Done."
 
-cmake -G Ninja \
+cmake \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
     -Bbuild -H. && \
-VERBOSE=1 ninja -C build && \
-CTEST_OUTPUT_ON_FAILURE=1 GTEST_COLOR=1 ninja -v -C build test
+cmake --build build/ -- -j4 && \
+CTEST_OUTPUT_ON_FAILURE=1 GTEST_COLOR=1 make -C build test
