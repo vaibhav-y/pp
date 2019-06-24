@@ -19,7 +19,8 @@ set (TEST_TARGETS
      007-Reverse-Integer
      008-String-To-Integer-Atoi
      009-Palindrome-Number
-     011-Container-With-Most-Water)
+     011-Container-With-Most-Water
+     0338-Counting-Bits)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t

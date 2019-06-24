@@ -1,0 +1,141 @@
+#+TITLE: Counting Set Bits in a number
+
+* [[https://leetcode.com/problems/counting-bits/][Counting Bits]]
+
+Important terms here:
+ - [[https://en.wikipedia.org/wiki/MISD][MISD]]
+ - [[https://en.wikipedia.org/wiki/SIMD][SIMD]]
+ - [[https://stackoverflow.com/a/34410357/2857070][Beautiful SO answer to generate good code for this]]
+
+This is my foray into dynamic programming, trying to understand how to spot recurrence relations and identify where to use DP to its maximum potential.
+
+There are faster methods than dynamic programming for this, but those reqiure using either compiler builtins, or hardware instructions. The most interesting
+of those is using =std::bitset<N>= (see SO link).
+
+** How to Dynamic This Program
+One of the most important insights here is that the bits at various positions
+in numbers repeat with a period, that is a power of 2. That should prompt us to look for something that relates a number to something before itself.
+
+Tabulating the bits of each number, we have:
+
+| Decimal  | Binary | Set Bit Count |
+|----------+--------+---------------|
+|0         |0       |0              |
+|1         |1       |1              |
+|2         |10      |1              |
+|3         |11      |2              |
+|4         |100     |1              |
+|5         |101     |2              |
+|6         |110     |2              |
+|7         |111     |3              |
+|8         |1000    |1              |
+
+Now, if we stare long enough, we notice that every odd number is preceded by an
+even number, always has 1 more number of set bits than the even number. This is
+always going to work since the jump from even to next odd is setting the LSB of
+the even number.
+
+Okay so now we know that =SETCOUNT(ODD) => SETCOUNT(ODD - 1) + 1=
+How do the evens relate to an odd number before them? Well, every even number is
+some power of 2 multiplied by an odd number (as noticed by right shifting the bits) since we right shift all the zeros off the number, this doesn't change the count of set bits.
+
+These two items leave us with the recurrence:
+
+=SETCOUNT(ODD) => SETCOUNT(ODD - 1) + 1=
+=SETCOUNT(EVEN) => SETCOUNT(N_ODD), where EVEN = (2^k) * N_ODD. =
+
+If the memo table is built bottom up, the even lookup turns into a constant time operation, as we only need to know the count for =N/2= to find out what the value for =N= would be.
+
+** Random thoughts
+Clearly, the naive way to do this would be to count the number of set bits for each number in loop and that turns out to have an amortized cost of =O(n * log (n))=. This can obviously improved using compiler builtins like =__builtin_popcount(unsigned int)= for =gcc= and =clang=.
+
+Those complexities aren't simply /bad/, because the code used to compute this is so simple that I would assume that compiler optimizations would /REALLY/ kick in, especially stuff like SIMD, and unrolling, and running the loop on multiple threads.
+
+TODO: Check the assembly produced for the following code block in GCC/Clang
+
+[[https://godbolt.org/z/H8N5G9][ALL HAIL GODBOLT]]
+
+#+BEGIN_SRC cxx
+#include <vector>
+
+// 32 ops per iteration, but each loop iteration is very MISD friendly
+// Each iteration is fully independant of the last so this parallelizes well
+// with SIMD.
+std::vector<int> countBitsNaive(int num) {
+  #define P1 1
+  #define P2 1<<1
+  #define P3 1<<2
+  #define P4 1<<3
+  #define P5 1<<4
+  #define P6 1<<5
+  #define P7 1<<6
+  #define P8 1<<7
+  #define P9 1<<8
+  #define P10 1<<9
+  #define P11 1<<10
+  #define P12 1<<11
+  #define P13 1<<12
+  #define P14 1<<13
+  #define P15 1<<14
+  #define P16 1<<15
+  #define P17 1<<16
+  #define P18 1<<17
+  #define P19 1<<18
+  #define P20 1<<19
+  #define P21 1<<20
+  #define P22 1<<21
+  #define P23 1<<22
+  #define P24 1<<23
+  #define P25 1<<24
+  #define P26 1<<25
+  #define P27 1<<26
+  #define P28 1<<27
+  #define P29 1<<28
+  #define P30 1<<29
+  #define P31 1<<30
+  #define P32 1<<31
+
+  std::vector<int> counts{num + 1, 0};
+
+  for (size_t i = 0; i <= num; ++i) {
+      counts[i] = num & P1 + num & P2 + num & P3 + num & P4 + num & P5 +
+                  num & P6 + num & P7 + num & P8 + num & P9 + num & P10 +
+                  num & P11 + num & P12 + num & P13 + num & P14 + num & P15 +
+                  num & P16 + num & P17 + num & P18 + num & P19 + num & P20 +
+                  num & P21 + num & P22 + num & P23 + num & P24 + num & P25 +
+                  num & P26 + num & P27 + num & P28 + num & P29 + num & P30 +
+                  num & P31;
+  }
+
+  return counts;
+}
+#+END_SRC
+
+This can be optimized via =__builtin_popcount= on GCC/Clang, and something equivalent on your favourite compiler (if this isn't an available instruction, then there is usually something like =__builtin_clz= that can be used)
+
+#+BEGIN_SRC cxx
+#include <vector>
+
+#if !defined(__GNUC__) && !defined(__clang__)
+static_assert(false, "Needs gcc or clang, to support __builtin_popcount");
+#endif
+
+
+// Define COUNT_BITS(x) here for each of the compilers targeted.
+#if defined(__GNUC__) || defined(__clang__)
+#define COUNT_BITS(x) __builtin_popcount((unsigned int) (x))
+#endif
+
+// 1 op per iteration
+// This also unrolls well since each loop iteration is independent of all
+// others, and can be sped up with SIMD instructions.
+std::vector<int> countBits(int num) {
+  std::vector<int> counts{num + 1, 0};
+
+  for (size_t i = 0; i <= num; ++i) {
+    counts[i] = COUNT_BITS(i);
+  }
+
+  return counts;
+}
+#+END_SRC
