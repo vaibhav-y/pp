@@ -12,7 +12,7 @@ This is my foray into dynamic programming, trying to understand how to spot recu
 There are faster methods than dynamic programming for this, but those reqiure using either compiler builtins, or hardware instructions. The most interesting
 of those is using =std::bitset<N>= (see SO link).
 
-** How to Dynamic This Program
+** How to Dynamic this Program
 One of the most important insights here is that the bits at various positions
 in numbers repeat with a period, that is a power of 2. That should prompt us to look for something that relates a number to something before itself.
 
@@ -40,13 +40,12 @@ How do the evens relate to an odd number before them? Well, every even number is
 some power of 2 multiplied by an odd number (as noticed by right shifting the bits) since we right shift all the zeros off the number, this doesn't change the count of set bits.
 
 These two items leave us with the recurrence:
-
-=SETCOUNT(ODD) => SETCOUNT(ODD - 1) + 1=
-=SETCOUNT(EVEN) => SETCOUNT(N_ODD), where EVEN = (2^k) * N_ODD. =
+- ~SETCOUNT(ODD) => SETCOUNT(ODD - 1) + 1~
+- ~SETCOUNT(EVEN) => SETCOUNT(N_ODD), where EVEN = (2^k) * N_ODD~
 
 If the memo table is built bottom up, the even lookup turns into a constant time operation, as we only need to know the count for =N/2= to find out what the value for =N= would be.
 
-** Random thoughts
+** Random afterthoughts
 Clearly, the naive way to do this would be to count the number of set bits for each number in loop and that turns out to have an amortized cost of =O(n * log (n))=. This can obviously improved using compiler builtins like =__builtin_popcount(unsigned int)= for =gcc= and =clang=.
 
 Those complexities aren't simply /bad/, because the code used to compute this is so simple that I would assume that compiler optimizations would /REALLY/ kick in, especially stuff like SIMD, and unrolling, and running the loop on multiple threads.
