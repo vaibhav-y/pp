@@ -15,7 +15,7 @@ INSTANTIATE_TEST_CASE_P(MaxAreaTest, P011_ContainerWithMostWater,
     std::make_pair<std::vector<int>, int>({}, 0),
     std::make_pair<std::vector<int>, int>({1, 1}, 1),
     std::make_pair<std::vector<int>, int>({1, 8, 6, 2, 5, 4, 8, 3, 7}, 49),
-    std::make_pair<std::vector<int>, int>({1, 2, 3, 4, 5, 6}, 12),
+    std::make_pair<std::vector<int>, int>({1, 2, 3, 4, 5, 6}, 9),
     std::make_pair<std::vector<int>, int>({6, 1, 5, 2, 4, 3}, 16)
   ));
 
