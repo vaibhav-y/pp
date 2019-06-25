@@ -2,6 +2,8 @@
 static_assert(false, "Won't include multiple solution headers");
 #else
 
+#define INCLUDED_SOLUTION_HEADER
+
 #include <vector>
 
 namespace p011 {
@@ -25,6 +27,6 @@ public:
     return maximum;
   }
 };
-}
+} // namespace p011
 
 #endif

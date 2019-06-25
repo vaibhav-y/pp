@@ -4,8 +4,8 @@ static_assert(false, "Won't include multiple solution headers!");
 
 #define INCLUDED_SOLUTION_HEADER
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 namespace p0338 {
 class Solution {
