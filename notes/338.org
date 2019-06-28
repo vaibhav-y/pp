@@ -52,7 +52,7 @@ Those complexities aren't simply /bad/, because the code used to compute this is
 
 TODO: Check the assembly produced for the following code block in GCC/Clang
 
-[[https://godbolt.org/z/H8N5G9][ALL HAIL GODBOLT]]
+[[https://godbolt.org/z/SR4Qar][ALL HAIL GODBOLT]]
 
 #+BEGIN_SRC cxx
 #include <vector>
@@ -61,49 +61,14 @@ TODO: Check the assembly produced for the following code block in GCC/Clang
 // Each iteration is fully independant of the last so this parallelizes well
 // with SIMD.
 std::vector<int> countBitsNaive(int num) {
-  #define P1 1
-  #define P2 1<<1
-  #define P3 1<<2
-  #define P4 1<<3
-  #define P5 1<<4
-  #define P6 1<<5
-  #define P7 1<<6
-  #define P8 1<<7
-  #define P9 1<<8
-  #define P10 1<<9
-  #define P11 1<<10
-  #define P12 1<<11
-  #define P13 1<<12
-  #define P14 1<<13
-  #define P15 1<<14
-  #define P16 1<<15
-  #define P17 1<<16
-  #define P18 1<<17
-  #define P19 1<<18
-  #define P20 1<<19
-  #define P21 1<<20
-  #define P22 1<<21
-  #define P23 1<<22
-  #define P24 1<<23
-  #define P25 1<<24
-  #define P26 1<<25
-  #define P27 1<<26
-  #define P28 1<<27
-  #define P29 1<<28
-  #define P30 1<<29
-  #define P31 1<<30
-  #define P32 1<<31
+   #define BIT(n, k) (((n) & (1 << (k) )) >> (k))
 
-  std::vector<int> counts{num + 1, 0};
+   std::vector<int> counts{num + 1, 0};
 
   for (size_t i = 0; i <= num; ++i) {
-      counts[i] = num & P1 + num & P2 + num & P3 + num & P4 + num & P5 +
-                  num & P6 + num & P7 + num & P8 + num & P9 + num & P10 +
-                  num & P11 + num & P12 + num & P13 + num & P14 + num & P15 +
-                  num & P16 + num & P17 + num & P18 + num & P19 + num & P20 +
-                  num & P21 + num & P22 + num & P23 + num & P24 + num & P25 +
-                  num & P26 + num & P27 + num & P28 + num & P29 + num & P30 +
-                  num & P31;
+    for (size_t k = 0; k < sizeof(num) * 8; ++k) {
+      counts[i] += BIT(num, k);
+    }
   }
 
   return counts;
