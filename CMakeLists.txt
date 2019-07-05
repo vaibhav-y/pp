@@ -21,7 +21,9 @@ set (TEST_TARGETS
      009-Palindrome-Number
      011-Container-With-Most-Water
      0338-Counting-Bits
-     062-Unique-Paths)
+     062-Unique-Paths
+     070-Climbing-Stairs
+)
 
 foreach (TEST ${TEST_TARGETS})
     add_executable(${TEST}.t
