@@ -22,6 +22,7 @@ set (TEST_TARGETS
      0011-Container-With-Most-Water
      0062-Unique-Paths
      0070-Climbing-Stairs
+     0121-Best-Time-To-Buy-And-Sell-Stock
      0338-Counting-Bits
      0746-Min-Cost-Climbing-Stairs
 )
