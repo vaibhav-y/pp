@@ -1,0 +1,20 @@
+* [[https://leetcode.com/problems/best-time-to-buy-and-sell-stock/][Best Time to Buy and Sell Stock]]
+
+This problem is equivalent to 53 (maximum subarray sum), and especially since the only way I understand how to compute max subarray sum is by maximum difference over the partial sum array.
+
+** Thoughts
+What constitutes a solution here?
+
+We have an array of numbers =[7, 1, 5, 3, 6, 4]= and we're constrained to 1 transaction only (consisting of a BUY and a SELL) we've to figure out what could be the most profit we stand to make in this array.
+
+So ~A[SELL_IDX] - A[BUY_IDX]~ is what we want to optimize, and ~BUY_IDX < SELL_IDX~.
+
+So we want search for either of these two properties (if thats the appropriate word) for profit[i...j] = A[j] - A[i]~:
+  - A[j] must be the largest number to the right of A[i], OR
+  - A[i] must be the smallest number to the left of A[j]
+
+It should suffice to store the running minimum, to get the maximum difference up to the current index
+
+There aren't too many edge cases except how to handle if there's only 1 array element. In which case we default to there being no profit since we need to *SELL* and *BUY*. So two elements are necessary.
+
+This will probably end up being important as a "best single buy/sell in a range" for future problems
