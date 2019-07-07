@@ -10,18 +10,18 @@ include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set (TEST_TARGETS
-     001-Two-Sum
-     002-Add-Two-Numbers
-     003-Longest-Substring-Without-Repeating-Characters
-     004-Median-Of-Two-Sorted-Arrays
-     005-Longest-Palindromic-Substring
-     006-ZigZag-Conversion
-     007-Reverse-Integer
-     008-String-To-Integer-Atoi
-     009-Palindrome-Number
-     011-Container-With-Most-Water
-     062-Unique-Paths
-     070-Climbing-Stairs
+     0001-Two-Sum
+     0002-Add-Two-Numbers
+     0003-Longest-Substring-Without-Repeating-Characters
+     0004-Median-Of-Two-Sorted-Arrays
+     0005-Longest-Palindromic-Substring
+     0006-ZigZag-Conversion
+     0007-Reverse-Integer
+     0008-String-To-Integer-Atoi
+     0009-Palindrome-Number
+     0011-Container-With-Most-Water
+     0062-Unique-Paths
+     0070-Climbing-Stairs
      0338-Counting-Bits
 )
 
@@ -37,15 +37,14 @@ foreach (TEST ${TEST_TARGETS})
          PRIVATE
          -g -O0
          -Wall -Werror
-         -fsanitize=address
-         -fcolor-diagnostics)
+         $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_compile_features(${TEST}.t PRIVATE cxx_std_17)
     target_compile_options(${TEST}.t
          PRIVATE
          -g -O0
          -Wall -Werror
-         -fcolor-diagnostics)
+         $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_link_libraries(${TEST}.t
                           PRIVATE

@@ -14,7 +14,8 @@ public:
     // 1. Fewer than 2 rows
     // 2. Fewer than 2 chars
     // 3. Fewer chars than rows
-    if (numRows < 2 || s.size() < 3 || s.size() <= numRows) {
+    if (numRows < 2 || s.size() < 3 ||
+        s.size() <= static_cast<size_t>(numRows)) {
       return s;
     }
 
@@ -37,7 +38,8 @@ public:
     for (size_t blkIdx = 0, offset = 0; blkIdx < numBlocks; ++blkIdx) {
       // First traverse the column, ever iteration is guaranteed
       // to start at a column index
-      for (size_t idx = 0; idx < numRows && offset < s.size();
+      for (size_t idx = 0;
+           idx < static_cast<size_t>(numRows) && offset < s.size();
            ++idx, ++offset) {
         outputRows[idx] += s[offset];
       }

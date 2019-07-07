@@ -23,7 +23,7 @@ public:
     bitCount[0] = 0;
     bitCount[1] = 1;
 
-    for (size_t i = 2; i <= num; ++i) {
+    for (size_t i = 2; i < bitCount.size(); ++i) {
       // if n IS EVEN:
       // BITCOUNT[n] = BITCOUNT[k], where n = largestPowerOf2Dividing(n) * k;
       // if n IS ODD:

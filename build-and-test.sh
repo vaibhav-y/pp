@@ -5,7 +5,7 @@
     && mkdir ./build \
     && echo "Done."
 
-cmake \
+CC=gcc-9 CXX=g++-9 cmake \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
     -Bbuild -H. && \
 cmake --build build/ -- -j4 && \
