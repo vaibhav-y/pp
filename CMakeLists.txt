@@ -20,9 +20,9 @@ set (TEST_TARGETS
      008-String-To-Integer-Atoi
      009-Palindrome-Number
      011-Container-With-Most-Water
-     0338-Counting-Bits
      062-Unique-Paths
      070-Climbing-Stairs
+     0338-Counting-Bits
 )
 
 foreach (TEST ${TEST_TARGETS})
