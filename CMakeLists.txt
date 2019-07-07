@@ -23,6 +23,7 @@ set (TEST_TARGETS
      0062-Unique-Paths
      0070-Climbing-Stairs
      0338-Counting-Bits
+     0746-Min-Cost-Climbing-Stairs
 )
 
 foreach (TEST ${TEST_TARGETS})
