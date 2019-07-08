@@ -1,0 +1,34 @@
+* [[https://leetcode.com/problems/house-robber][House Robber]]
+
+The main aspect that confused me initially was how this is not just the sum of alternating subarrays.
+
+** Thoughts
+An example that is less trivial is: =[2, 1, 4, 3, 5, 1000, 7, 8, 6]=. The best path through must contain the 1000, so the best ways to make that happen are:
+  - =[2, 4, 1000, 8] with scores: [2, 6, 1006, 1014]
+
+So we probably need to know what the best cost is up-to a certain index. This
+records the best along all paths to that number.
+
+The relation might be: ~best_at[i] = cost[i] + best_at[i - 2]~, since the path
+to get to ~i~ will have a node at ~i - 2~ or before.
+
+Additionally, due to the limitation of not being able to visit adject houses
+together, the maximum cost path ends at either the ultimate or the penultimate indices.
+
+Worked out example:
+
+#+BEGIN_SRC
+index       0 1 2 3 4  5    6    7    8
+A           2 1 4 3 5  1000 7    8    6 
+best_at     2 1 6 5 11 1006 18   1014 24
+running_max 2 2 6 6 11 1006 1006 1014 1014
+#+END_SRC
+
+Now to find a way to avoid the extra array.
+
+** Implementation
+*** =ITERATION-1=
+
+#+BEGIN_SRC
+
+#+END_SRC
