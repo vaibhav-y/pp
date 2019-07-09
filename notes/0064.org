@@ -1,0 +1,19 @@
+* [[https://leetcode.com/problems/minimum-path-sum/][Minimum Path Sum]]
+
+** Thoughts
+
+- Given a =m x n= grid of *non-negative* numbers where we start traversing through the first element (top left), and end our traversal at the last element (bottom right).
+
+- We can only move down or right at a given index.
+
+Find the minimum cost path through this.
+
+** Potential Solutions
+  - A limited breadth first search would work here (like Dijkstra)
+  - The simpler solution would involve the following observation, the only way to approach a cell is through the left element and the one above it, we can compute this row by row.
+  
+#+BEGIN_SRC
+min_cost[r, c] = cost[r, c] + min(min_cost[r - 1][c], min_cost[r, c - 1])
+#+END_SRC
+
+The base case, of course occurs at the top and left edges of the matrix
