@@ -1,0 +1,82 @@
+* #+TITLE: Counting Unique Binary Search trees for a sorted sequence with no repeats
+
+* [[https://leetcode.com/problems/unique-binary-trees/][Unique Binary Search Trees]]
+
+** Thoughts
+Key-phrase: Binary *SEARCH* Trees.
+
+Which means that theres guarantees about the relative position of nodes that
+we get right off the bat. So the only thing we need to do, is pick the root
+of the tree.
+
+We're going to use some notation now:
+  - ~a <- b~ is used to denote: ~a~ is a left child of ~b~
+  - ~a -> b~, therefore stands for the ~b~ is a right child of ~a~
+  (the better one)
+  - ~[a .. b]~ means the set of subtrees whose roots could be any of the
+    numbers from ~a~ to ~b~
+  - ~|~ is used as an OR choice
+
+So for ~n = 3~, the possible trees sort of look like:
+  - ~1 -> [2..3]~
+    - ~1->[2->3]~
+    - ~1->[2<-3]~
+  - ~1<-2->3~
+  - ~[1..2]<-3~ => ~[1->2 | 1<-2] <- 3~
+
+There seems to be a certain symmetry that arises between the head and tail of
+the sequence that is worth exploring,
+
+~n = 4~ yields:
+- ~1 -> [2..4]~
+  - ~1 -> [2 -> [3..4]]~
+    -~1 -> [2 -> [3 -> 4 | 3 <-4]]~
+  - ~1 -> [2 <- 3 -> 4]~
+  - ~1 -> [[2..3] <- 4]~
+    - ~1 -> [[2 -> 3] <- 4]~
+    - ~1 -> [[2 <- 3] <- 4]~
+- ~1 <- 2 -> [3..4]~
+  - ~...~
+- ~[1..2] <- 3 -> 4~
+  - ~...~
+- ~[1..3] <- 4~
+  - ~...~
+
+Another cool thing to note here, that the subtrees are all identically
+arranged for the same sequence length. Put simply:
+
+If I have a set of subtrees ~[1..n]~, this MUST have the same structures as
+the contiguous sequence ~[a..(a + n - 1)]~. So all sequences ~[a..b]~ can be
+mapped back to some ~[1..k]~, which provides an efficient solution to
+counting. If =f(n)= is the number of ways to arrange a BST with ~n~
+non-repeating consecutive numbers:
+
+#+BEGIN_SRC
+// Base cases
+f(0) = 1
+f(1) = 1
+
+// 1->2 | 1<-2
+f(2) =   f(0)*f(1) // 1 as root, 0 elements in left, and 1 on right, L and R
+                   // children can be arranged independently
+       + f(0)*f(1) // 2 as root
+
+f(3) = f(0)*f(2) // 1 as root1 child on the left, 2 numbers to the right, L-R
+                 // independent
+     + f(1)*f(1) // 2 as root
+     + f(2)*f(0) // 3 as root
+
+// Goes on to become something like this
+f(n) = SUM(k = 0 to n-1) [ f(n-1-k)*f(k) ]
+
+#+END_SRC
+
+
+** Implementation
+
+Now the only problem remaining is to make this computation efficient. Bottom
+up seems to be quadratic, but I have a feeling this can be done in linear
+time at best.
+
+Some obvious speed-ups for the quadratic solution: Compute only half the
+range, and double it. This is a straight up 4x speed-up.
