@@ -21,6 +21,7 @@ set (TEST_TARGETS
      0009-Palindrome-Number
      0011-Container-With-Most-Water
      0062-Unique-Paths
+     0064-Minimum-Path-Sum
      0070-Climbing-Stairs
      0121-Best-Time-To-Buy-And-Sell-Stock
      0198-House-Robber
