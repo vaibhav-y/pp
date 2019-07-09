@@ -10,23 +10,23 @@ include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set (TEST_TARGETS
-     0001-Two-Sum
-     0002-Add-Two-Numbers
-     0003-Longest-Substring-Without-Repeating-Characters
-     0004-Median-Of-Two-Sorted-Arrays
-     0005-Longest-Palindromic-Substring
-     0006-ZigZag-Conversion
-     0007-Reverse-Integer
-     0008-String-To-Integer-Atoi
-     0009-Palindrome-Number
-     0011-Container-With-Most-Water
-     0062-Unique-Paths
-     0064-Minimum-Path-Sum
-     0070-Climbing-Stairs
-     0121-Best-Time-To-Buy-And-Sell-Stock
-     0198-House-Robber
-     0338-Counting-Bits
-     0746-Min-Cost-Climbing-Stairs
+     0001-two-sum
+     0002-add-two-numbers
+     0003-longest-substring-without-repeating-characters
+     0004-median-of-two-sorted-arrays
+     0005-longest-palindromic-substring
+     0006-zigzag-conversion
+     0007-reverse-integer
+     0008-string-to-integer-atoi
+     0009-palindrome-number
+     0011-container-with-most-water
+     0062-unique-paths
+     0064-minimum-path-sum
+     0070-climbing-stairs
+     0121-best-time-to-buy-and-sell-stock
+     0198-house-robber
+     0338-counting-bits
+     0746-min-cost-climbing-stairs
 )
 
 foreach (TEST ${TEST_TARGETS})
