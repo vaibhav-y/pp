@@ -22,6 +22,7 @@ set (TEST_TARGETS
      0011-container-with-most-water
      0062-unique-paths
      0064-minimum-path-sum
+     0096-unique-binary-search-trees
      0070-climbing-stairs
      0121-best-time-to-buy-and-sell-stock
      0198-house-robber
