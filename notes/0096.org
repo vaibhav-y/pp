@@ -1,4 +1,4 @@
-* #+TITLE: Counting Unique Binary Search trees for a sorted sequence with no repeats
+#+TITLE: Counting Unique Binary Search trees for a sorted sequence with no repeats
 
 * [[https://leetcode.com/problems/unique-binary-trees/][Unique Binary Search Trees]]
 
@@ -80,3 +80,8 @@ time at best.
 
 Some obvious speed-ups for the quadratic solution: Compute only half the
 range, and double it. This is a straight up 4x speed-up.
+
+Well, on the other hand, the problem specification says that the result is an
+=int=, so valid values of input are upto =19= before 32 bit integers
+overflow, so I think the linear traversal is actually better because caches
+and local memory
