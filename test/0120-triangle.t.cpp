@@ -15,12 +15,19 @@ protected:
   p0120::Solution sol;
 };
 
-INSTANTIATE_TEST_CASE_P(TriagleMinPathTest, P0120_Triangle, 
+INSTANTIATE_TEST_CASE_P(TriangleMinPathTest, P0120_Triangle,
   ::testing::Values(
-    t({}, 0)
+    t({}, 0),
+    t({{1}}, 1),
+    t({{1}, {2, 3}}, 3),
+    t({{-1}, {1, -2}}, -3),
+    t({{2},{3,4},{6,5,7},{4,1,8,3}}, 11)
   )
 );
 
 TEST_P(P0120_Triangle, Generic) {
-  EXPECT_EQ(GetParam().second, sol.minimumTotal(GetParam().first));
+  EXPECT_EQ(
+      GetParam().second,
+      sol.minimumTotal(const_cast<INPUT&>(GetParam().first))
+  );
 }
