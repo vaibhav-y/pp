@@ -24,6 +24,10 @@ public:
     std::vector<int> row(triangle.back().size(),
                          std::numeric_limits<int>::max());
     row[0] = triangle[0][0];
+    // This needs a staging array, since each element is used in
+    // two comparisons, so the single array approach doesn't work because both
+    // the children are in the next iteration (unlike previous scenarios) where
+    // we had one child path in the same iteration (horizontal)
     std::vector<int> updated(row);
     // The traversal looks like so:
     // [1]
@@ -36,11 +40,11 @@ public:
       for (size_t j = 1; j <= i; ++j) {
         updated[j] = triangle[i][j] + std::min(row[j - 1], row[j]);
       }
-      // We need this to 
       updated[0] += triangle[i][0];
       row = updated;
     }
 
+    // This is to stay outside to avoid the extra comparisons inside the loop
     return *std::min_element(row.begin(), row.end());
   }
 };
