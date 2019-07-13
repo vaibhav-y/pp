@@ -4,8 +4,8 @@ static_assert(false, "Won't include multiple solution headers");
 
 #define INCLUDED_SOLUTION_HEADEAR
 
-#include <vector>
 #include <numeric>
+#include <vector>
 
 namespace p0096 {
 class Solution {
@@ -24,7 +24,7 @@ public:
     for (size_t i = 2; i <= n; ++i) {
       count[i] = 0;
       for (size_t j = 0; j < i; ++j) {
-        count[i] += count[j] * count[i -  1 - j];
+        count[i] += count[j] * count[i - 1 - j];
       }
     }
 

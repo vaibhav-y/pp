@@ -4,9 +4,9 @@ static_assert("Won't include multiple solution headers");
 
 #define INCLUDED_SOLUTION_HEADER
 
-#include <vector>
-#include <limits>
 #include <algorithm>
+#include <limits>
+#include <vector>
 
 namespace p0120 {
 class Solution {
@@ -48,4 +48,4 @@ public:
     return *std::min_element(row.begin(), row.end());
   }
 };
-}
+} // namespace p0120
