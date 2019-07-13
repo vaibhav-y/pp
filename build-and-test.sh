@@ -9,4 +9,4 @@ cmake \
     -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
     -Bbuild -H. && \
 cmake --build build/ -- -j4 && \
-CTEST_OUTPUT_ON_FAILURE=1 GTEST_COLOR=1 make -C build test
+CTEST_OUTPUT_ON_FAILURE=1 GTEST_COLOR=1 make -j4 -C build test
