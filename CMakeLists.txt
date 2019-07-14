@@ -27,6 +27,7 @@ set (TEST_TARGETS
      0120-triangle
      0121-best-time-to-buy-and-sell-stock
      0198-house-robber
+     0300-longest-increasing-subsequence
      0338-counting-bits
      0322-coin-change
      0746-min-cost-climbing-stairs
