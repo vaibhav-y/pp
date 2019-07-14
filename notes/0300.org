@@ -1,0 +1,73 @@
+#+TITLE: Longest Increasing Subsequence
+
+* [[https://leetcode.com/problems/longest-increasing-subsequence/][300. Longest Increasing Subsequence]]
+
+Given an array, find the longest subsequence of element that are in increasing order.
+
+
+** Thoughts -- Careful brute force
+Might sound like an obvious detail, but the important question to ask here is, how do we find /increasing/ subsequences?  Because finding those *MAY* be enough to find the longest one.
+
+Lets look at example sequence from the question itself:
+
+=[10, 9, 2, 5, 3, 7, 101, 8]=
+
+The brute force way to find the strictly increasing this would be to
+- for each index, list out the numbers larger than the current number
+- Repeat this process for each of the numbers we listed out.
+
+If =IncSS(i)= is a function that represents the increasing subsequence starting at value =i= (inclusive), we get the follwing relations the =|= operator represents choice, signifying that any of the paths are valid. 
+
+#+BEGIN_SRC
+IncSS(10) = [10] + IncSS(101)
+IncSS(9) = [9] + IncSS(101)
+# '2' has 5 possible pathways to expand to *AN* increasing subsequence
+IncSS(2) = [2] + (IncSS(5) | IncSS(5) | IncSS(3) | IncSS(7) | IncSS(101) | IncSS(8))
+# Similarly, '5' has multiple choices
+IncSS(5) = [5] + (IncSS(7) | IncSS(101) | IncSS(8))
+IncSS(3) = [3] + (IncSS(7) | IncSS(101) | IncSS(8))
+IncSS(7) = [5] + (IncSS(101) | IncSS(8))
+IncSS(101) = [101]
+IncSS(8) = [8]
+#+END_SRC
+
+/AHA/!
+Finding increasing subsequences that start at a certain index has a lot of repeated work, as that code-block emperically shows.
+
+This =IncSS= is a convenient way to think about it, but will need us to search through the matrix for the longest value after we're done computing stuff, so we'll try to redefine what we're trying to optimize to match the problem statement and see if we can use our knowledge of =IncSS= somehow to our advantage.
+
+If, =L[i]= is the length of the longest increasing subsequence starting at =A[i]=:
+
+
+#+BEGIN_SRC
+L[i] = 1 + max(L[j...]), where j > i and A[j] > A[i]
+L[i] = 1, if no satisfying j exists.
+#+END_SRC
+
+The elements with lower indices depend on those with larger indices, so we work this one backwards to have a bottom-up table construction.
+
+| A[i] | 10 | 9 | 2 | 5 | 3 | 7 | 101 | 8 |
+| i    | 0  | 1 | 2 | 3 | 4 | 5 | 6   | 7 |
+
+
+=IncSS= translates beautifully into these:
+#+BEGIN_SRC
+L[7] = 1
+# Nothing after 101 is larger
+L[6] = 1 + max([]) = 1
+L[5] = 1 + max(L[6], L[7]) = 2
+L[4] = 1 + max(L[5], L[6], L[7]) = 3
+L[3] = 1 + max(L[5], L[6], L[7]) = 3
+L[2] = 1 + max(L[4], L[5], L[6], L[7]) = 4
+L[1] = 1 + max(L[6]) = 2
+L[0] = 1 + max(L[6]) = 2
+#+END_SRC
+
+We need to make a linear scan every iteration, and we iterate over the whole
+array, so =O(n^2)= time complexity.
+
+*Q* *E* *D*
+
+** Follow-up
+
+There is still duplicated effort here, in that, every iteration we keep solving "which indices are larger than A[i]", perhaps this could speed things up more if we could memoize that
