@@ -4,8 +4,8 @@ static_assert(false, "Won't include multiple solution headers");
 
 #define INCLUDED_SOLUTION_HEADER
 
-#include <vector>
 #include <limits>
+#include <vector>
 
 namespace p0300 {
 class Solution {
@@ -35,4 +35,4 @@ public:
     return largest;
   }
 };
-}
+} // namespace p0300
