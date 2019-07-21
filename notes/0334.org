@@ -1,0 +1,18 @@
+#+TITLE: Find an increasing sequence of length 3
+
+This was... interesting. I don't think I could have come up with the solution that I saw online in a limited time high pressure environment. Which is exactly the reason I will be writing down notes about to so that I remember what its about, and how to approach this. We'll also extend this to a more general case.
+
+* [[https://leetcode.com/problems/increasing-triplet-subsequence][Increasing Triplet Subsequence]]
+
+The question asks us to find if there are three numbers occuring left to right,
+that are in increasing order. i.e. =a[i] < a[j] < a[k] for i < j < k=
+
+There were many false roads that were taken when trying to solve this:
+- Trying to find =a[i] < a[j], i < j= in linear time using a two pointer approach
+  - While this was the underlying idea behind the final solution, the two-pointer approach is a dead end.
+- Trying to find a pattern in the brute force and optimizing repeated work out of that
+ - Impossible to do with constant memory
+
+In order to find an increasing subsequence of size 3, we need to keep track of the two smallest numbers before an index.If we get to filling out all these values, then an increasing subsequence of size 3 exists.
+
+To do this, we can store a list of size 3, where we first update 3 
