@@ -31,6 +31,7 @@ set (TEST_TARGETS
      0334-increasing-triplet-subsequence
      0338-counting-bits
      0322-coin-change
+     0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
 )
 
