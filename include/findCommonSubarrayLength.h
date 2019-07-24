@@ -9,12 +9,14 @@ static_assert(false, "Won't include multiple solution headers");
 
 namespace p0718 {
 class Solution {
+  static constexpr size_t MAX_ARRAY_SIZE = 1000;
+
 public:
   int findLength(std::vector<int> &A, std::vector<int> &B) {
     if (A.empty() || B.empty()) {
       return 0;
     }
-    std::bitset<1000 * 1000> matrix;
+    std::bitset<MAX_ARRAY_SIZE * MAX_ARRAY_SIZE> matrix;
 
     size_t maximum = 0;
 
