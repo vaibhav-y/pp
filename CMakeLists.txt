@@ -31,6 +31,7 @@ set (TEST_TARGETS
      0334-increasing-triplet-subsequence
      0338-counting-bits
      0322-coin-change
+     0647-palindromic-substrings
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
 )
@@ -47,6 +48,9 @@ foreach (TEST ${TEST_TARGETS})
          PRIVATE
          -g -O0
          -Wall -Werror
+         -fsanitize=address
+         -fsanitize=undefined
+         -fsanitize=leak
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_compile_features(${TEST}.t PRIVATE cxx_std_17)
@@ -54,10 +58,16 @@ foreach (TEST ${TEST_TARGETS})
          PRIVATE
          -g -O0
          -Wall -Werror
+         -fsanitize=address
+         -fsanitize=undefined
+         -fsanitize=leak
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_link_libraries(${TEST}.t
                           PRIVATE
+                          -fsanitize=address
+                          -fsanitize=undefined
+                          -fsanitize=leak
                           ${TEST}
                           ${GTEST_BOTH_LIBRARIES}
                           pthread)
