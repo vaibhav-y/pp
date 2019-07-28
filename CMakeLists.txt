@@ -20,6 +20,7 @@ set (TEST_TARGETS
      0008-string-to-integer-atoi
      0009-palindrome-number
      0011-container-with-most-water
+     0017-letter-combinations-of-a-phone-number
      0062-unique-paths
      0064-minimum-path-sum
      0096-unique-binary-search-trees
@@ -50,7 +51,6 @@ foreach (TEST ${TEST_TARGETS})
          -Wall -Werror
          -fsanitize=address
          -fsanitize=undefined
-         -fsanitize=leak
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_compile_features(${TEST}.t PRIVATE cxx_std_17)
@@ -60,14 +60,12 @@ foreach (TEST ${TEST_TARGETS})
          -Wall -Werror
          -fsanitize=address
          -fsanitize=undefined
-         -fsanitize=leak
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_link_libraries(${TEST}.t
                           PRIVATE
                           -fsanitize=address
                           -fsanitize=undefined
-                          -fsanitize=leak
                           ${TEST}
                           ${GTEST_BOTH_LIBRARIES}
                           pthread)
