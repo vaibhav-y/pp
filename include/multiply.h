@@ -58,14 +58,9 @@ private:
   // Adds two 'Big' Numbers represented as vectors (right to left)
   // Equivalent to the following operation:
   // first + second * (10 ** secondPadding)
-  Number add(const Number &first, const Number &second, size_t secondPadding,
-             size_t base) {
+  Number add(const Number &first, const Number &second, size_t base) {
     if (first.empty()) {
-      Number result(second);
-      while (secondPadding > 0) {
-        result.push_back(0);
-      }
-      return result;
+      return second;
     }
     if (second.empty()) {
       return first;
@@ -125,13 +120,32 @@ public:
     Number result;
 
     size_t place = 0;
-    for (auto rit = outer.crbegin(); rit != outer.crend(); ++rit) {
+    for (auto rit = outer.crbegin(); rit != outer.crend(); ++rit, ++place) {
       auto currentResult = singleDigitMultiply(inner, *rit, BASE);
-      result = add(result, currentResult, place++, BASE);
+      size_t x = 0;
+      // Pad it with zeros for the appropriate power of the base
+      while (x < place) {
+        currentResult.push_back(0);
+        ++x;
+      }
+      result = add(result, currentResult, BASE);
     }
 
     std::stringstream ss;
-    for (auto cit = result.cbegin(); cit != result.cend(); ++cit) {
+    ss << result.front();
+    for (auto cit = result.cbegin() + 1; cit != result.cend(); ++cit) {
+      // Pad the string being insert with 0s so that it is 4 characters long
+      // This is a bit of a hack but better than stringstream::tellg() which
+      // I only know about because I got to google stuff
+      if (*cit < 10) {
+        ss << "000";
+      }
+      else if (*cit < 100) {
+        ss << "00";
+      }
+      else if (*cit < 1000) {
+        ss << "0";
+      }
       ss << *cit;
     }
     return ss.str();
