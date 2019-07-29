@@ -21,6 +21,7 @@ set (TEST_TARGETS
      0009-palindrome-number
      0011-container-with-most-water
      0017-letter-combinations-of-a-phone-number
+     0043-multiply-strings
      0062-unique-paths
      0064-minimum-path-sum
      0096-unique-binary-search-trees
