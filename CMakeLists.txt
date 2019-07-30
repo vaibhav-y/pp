@@ -25,6 +25,7 @@ set (TEST_TARGETS
      0049-group-anagrams
      0062-unique-paths
      0064-minimum-path-sum
+     0071-simplify-path
      0096-unique-binary-search-trees
      0070-climbing-stairs
      0120-triangle
