@@ -4,9 +4,9 @@
 
 #define INCLUDED_SOLUTION_HEADER
 
-#include <string>
 #include <iostream>
 #include <sstream>
+#include <string>
 #include <vector>
 
 namespace p0071 {
@@ -20,9 +20,10 @@ public:
         ++pos;
       } else {
         size_t next_fragment_start = path.find_first_of('/', pos);
-        std::string fragment = (next_fragment_start == std::string::npos) ?
-          path.substr(pos) :
-          path.substr(pos, next_fragment_start - pos);
+        std::string fragment =
+            (next_fragment_start == std::string::npos)
+                ? path.substr(pos)
+                : path.substr(pos, next_fragment_start - pos);
         if (fragment == ".") {
           pos = next_fragment_start;
           continue;
@@ -46,4 +47,4 @@ public:
     return ss.str();
   }
 };
-}
+} // namespace p0071

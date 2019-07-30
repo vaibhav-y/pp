@@ -4,15 +4,15 @@
 
 #define INCLUDED_SOLUTION_HEADER
 
-#include <vector>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace p0049 {
 class Solution {
 public:
   std::vector<std::vector<std::string>>
-  groupAnagrams(std::vector<std::string>& strs) {
+  groupAnagrams(std::vector<std::string> &strs) {
     if (strs.empty()) {
       return {};
     }

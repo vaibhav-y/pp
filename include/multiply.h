@@ -22,16 +22,14 @@ private:
     if (firstChunkSize != 0) {
       chunk = number.substr(0, firstChunkSize);
       parsed.push_back(
-        static_cast<Number::value_type>(strtol(chunk.c_str(), nullptr, 10))
-      );
+          static_cast<Number::value_type>(strtol(chunk.c_str(), nullptr, 10)));
       start = firstChunkSize;
     }
     // The rest of the number is parsed into chunks now
     while (start < number.size()) {
       chunk = number.substr(start, chunkSize);
       parsed.push_back(
-        static_cast<Number::value_type>(strtol(chunk.c_str(), nullptr, 10))
-      );
+          static_cast<Number::value_type>(strtol(chunk.c_str(), nullptr, 10)));
       start += chunkSize;
     }
 
@@ -139,11 +137,9 @@ public:
       // I only know about because I got to google stuff
       if (*cit < 10) {
         ss << "000";
-      }
-      else if (*cit < 100) {
+      } else if (*cit < 100) {
         ss << "00";
-      }
-      else if (*cit < 1000) {
+      } else if (*cit < 1000) {
         ss << "0";
       }
       ss << *cit;
