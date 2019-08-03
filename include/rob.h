@@ -1,5 +1,5 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multuple solution headers");
+#error Wont include multuple solution headers
 #endif
 
 #define INCLUDED_SOLUTION_HEADER

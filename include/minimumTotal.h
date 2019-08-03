@@ -1,5 +1,5 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert("Won't include multiple solution headers");
+Wont include multiple solution headers);
 #endif
 
 #define INCLUDED_SOLUTION_HEADER
@@ -30,10 +30,10 @@ public:
     // we had one child path in the same iteration (horizontal)
     std::vector<int> updated(row);
     // The traversal looks like so:
-    // [1]
-    //  | \
-    // [2, 3]
-    //  | \| \
+    // [1]-+
+    //  |  |
+    // [2, 3]-+
+    //  | \|  |
     // [4, 5, 6]
     // ...
     for (size_t i = 1; i < triangle.size(); ++i) {

@@ -1,5 +1,5 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-#error Won't include multiple solution headers
+#error Wont include multiple solution headers
 #endif
 
 #define INCLUDED_SOLUTION_HEADER

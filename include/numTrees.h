@@ -1,8 +1,8 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multiple solution headers");
+#error Wont include multiple solution headers
 #endif
 
-#define INCLUDED_SOLUTION_HEADEAR
+#define INCLUDED_SOLUTION_HEADER
 
 #include <numeric>
 #include <vector>
@@ -21,7 +21,7 @@ public:
 
     // Iteratively compute the sums
     // Each sum is the dot product of [1..k] with [k..1]
-    for (size_t i = 2; i <= n; ++i) {
+    for (size_t i = 2; i < count.size(); ++i) {
       count[i] = 0;
       for (size_t j = 0; j < i; ++j) {
         count[i] += count[j] * count[i - 1 - j];

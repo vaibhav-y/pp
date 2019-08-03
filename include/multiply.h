@@ -1,11 +1,14 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-#error Won't include multiple solution headers
+#error Wont include multiple solution headers
 #endif
+
+#define INCLUDED_SOLUTION_HEADER
 
 #include <cstdlib>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 namespace p0043 {
 class Solution {

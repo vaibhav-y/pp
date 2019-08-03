@@ -1,7 +1,8 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multiple solution headers together!")
+#error Wont include multiple solution headers together
 #else
-#define INCLUDED_SOLUTION_HEADER "005"
+
+#define INCLUDED_SOLUTION_HEADER
 
 #include <iostream>
 #include <string>

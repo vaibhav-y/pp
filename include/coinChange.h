@@ -1,5 +1,5 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multiple solution headers");
+#error Wont include multiple solution headers
 #endif
 
 #define INCLUDED_SOLUTION_HEADER
@@ -24,7 +24,7 @@ public:
         *std::min_element(coins.begin(), coins.end());
     for (size_t i = leastDenomination; i < change.size(); ++i) {
       for (size_t j = 0; j < coins.size(); ++j) {
-        if (i >= coins[j]) {
+        if (i >= static_cast<size_t>(coins[j])) {
           change[i] = std::min(change[i], 1 + change[i - coins[j]]);
         }
       }

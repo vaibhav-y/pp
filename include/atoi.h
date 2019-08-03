@@ -1,6 +1,8 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multiple solution headers");
-#else
+#error Wont include multiple solution headers
+#endif
+
+#define INCLUDED_SOLUTION_HEADER
 
 #include <limits>
 #include <string>
@@ -66,5 +68,3 @@ public:
   }
 };
 } // namespace p008
-
-#endif

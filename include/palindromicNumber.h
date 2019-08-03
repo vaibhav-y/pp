@@ -1,6 +1,8 @@
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multiple solution headers");
+#error Wont include multiple solution headers
 #else
+
+#define INCLUED_SOLUTION_HEADER
 
 namespace p009 {
 class Solution {

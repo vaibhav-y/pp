@@ -1,9 +1,10 @@
-#include "Common.h"
-
 #if defined(INCLUDED_SOLUTION_HEADER)
-static_assert(false, "Won't include multiple solution headers together!")
+#error Wont include multiple solution headers together
 #else
+
 #define INCLUDED_SOLUTION_HEADER "001"
+
+#include "Common.h"
 
 #include <map>
 #include <vector>
