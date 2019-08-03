@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <utility>
 #include <string>
+#include <algorithm>
 
 #include "groupAnagrams.h"
 
@@ -25,8 +26,10 @@ INSTANTIATE_TEST_CASE_P(AnagramGroupTest, P0049_GroupAnagrams,
 
 TEST_P(P0049_GroupAnagrams, Generic) {
   auto input = GetParam().first;
-  EXPECT_EQ(
-    GetParam().second,
-    sol.groupAnagrams(input)
-  );
+  auto expected = GetParam().second;
+  auto output = sol.groupAnagrams(input);
+  std::set<std::vector<std::string>> expectedSet(expected.begin(), expected.end());
+  std::set<std::vector<std::string>> outputSet(output.begin(), output.end());
+
+  EXPECT_EQ(expectedSet, outputSet);
 }

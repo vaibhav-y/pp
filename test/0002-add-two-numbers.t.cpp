@@ -4,12 +4,23 @@
 
 using p002::Solution;
 
+void freeList(ListNode *node) {
+  if (!node) {
+    return;
+  }
+  // Free all children first
+  freeList(node->next);
+  delete node;
+}
+
 TEST(P002_AddTwoNumbers, BothAreNull) {
   Solution sol;
   ListNode *l1 = nullptr;
   ListNode *l2 = nullptr;
 
   EXPECT_EQ(sol.addTwoNumbers(l1, l2), nullptr);
+  freeList(l1);
+  freeList(l2);
 }
 
 TEST(P002_AddTwoNumbers, OneListIsNull) {
@@ -20,6 +31,7 @@ TEST(P002_AddTwoNumbers, OneListIsNull) {
 
   EXPECT_EQ(sol.addTwoNumbers(l1, nullptr), l1);
   EXPECT_EQ(sol.addTwoNumbers(nullptr, l1), l1);
+  freeList(l1);
 }
 
 TEST(P002_AddTwoNumbers, NonNullSameSize) {
@@ -40,7 +52,12 @@ TEST(P002_AddTwoNumbers, NonNullSameSize) {
   result->next = new ListNode(0);
   result->next->next = new ListNode(8);
 
-  EXPECT_EQ(sol.addTwoNumbers(l1, l2)->as_list(), result->as_list());
+  ListNode* sum = sol.addTwoNumbers(l1, l2);
+  EXPECT_EQ(sum->as_list(), result->as_list());
+  freeList(l1);
+  freeList(l2);
+  freeList(result);
+  freeList(sum);
 }
 
 TEST(P002_AddTwoNumbers, NonNullDisparateSize) {
@@ -60,5 +77,10 @@ TEST(P002_AddTwoNumbers, NonNullDisparateSize) {
   result->next->next = new ListNode(0);
   result->next->next->next = new ListNode(1);
 
-  EXPECT_EQ(sol.addTwoNumbers(l1, l2)->as_list(), result->as_list());
+  ListNode* sum = sol.addTwoNumbers(l1, l2);
+  EXPECT_EQ(sum->as_list(), result->as_list());
+  freeList(l1);
+  freeList(l2);
+  freeList(sum);
+  freeList(result);
 }
