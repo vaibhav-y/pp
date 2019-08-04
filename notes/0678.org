@@ -4,11 +4,11 @@
 
 This is an interesting question which is pretty illustrative of the breadth of the backtracking line of questioning.
 
-The question states that we are provided a string which can be composed of one of three characters ='('=, =')'=, ='*'=, and we are asked to verify they form a valid parenthesization according to the following rules:
+The question states that we are provided a string which can be composed of one of three characters =(=, =)=, =*=, and we are asked to verify they form a valid parenthesization according to the following rules:
 
-1. A ='('= must have a corresponding =')'=
-2. A ='*'= can act as: ='('=, =')'=, or a non-paren token
-3. All =')'= have a corresponding ='('= that has already occured in the string
+1. A =(= must have a corresponding =)=
+2. A =*= can act as: =(=, =)=, or a non-paren token
+3. All =)= have a corresponding =(= that has already occured in the string
 4. Empty strings are trivially balanced
 
 
