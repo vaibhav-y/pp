@@ -41,6 +41,7 @@ set (TEST_TARGETS
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
      0848-shifting-letters
+     0890-find-and-replace-pattern
 )
 
 foreach (TEST ${TEST_TARGETS})
@@ -53,7 +54,7 @@ foreach (TEST ${TEST_TARGETS})
     target_compile_features(${TEST} PRIVATE cxx_std_17)
     target_compile_options(${TEST}
          PRIVATE
-         -g -O0
+         -g
          -Wall -Werror
          -fsanitize=address
          -fsanitize=undefined
@@ -62,7 +63,7 @@ foreach (TEST ${TEST_TARGETS})
     target_compile_features(${TEST}.t PRIVATE cxx_std_17)
     target_compile_options(${TEST}.t
          PRIVATE
-         -g -O0
+         -g
          -Wall -Werror
          -fsanitize=address
          -fsanitize=undefined
