@@ -40,6 +40,7 @@ set (TEST_TARGETS
      0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
+     0848-shifting-letters
 )
 
 foreach (TEST ${TEST_TARGETS})
