@@ -37,6 +37,7 @@ set (TEST_TARGETS
      0338-counting-bits
      0322-coin-change
      0647-palindromic-substrings
+     0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
 )
