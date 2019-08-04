@@ -1,0 +1,170 @@
+#+TITLE: Checking for Valid Parenthesization - Level 2
+
+* [[https://leetcode.com/problems/valid-parenthesis-string/][678. Valid Parenthesis String]]
+
+This is an interesting question which is pretty illustrative of the breadth of the backtracking line of questioning.
+
+The question states that we are provided a string which can be composed of one of three characters ='('=, =')'=, ='*'=, and we are asked to verify they form a valid parenthesization according to the following rules:
+
+1. A ='('= must have a corresponding =')'=
+2. A ='*'= can act as: ='('=, =')'=, or a non-paren token
+3. All =')'= have a corresponding ='('= that has already occured in the string
+4. Empty strings are trivially balanced
+
+
+
+** =ITERATION-1= Naive recursion
+
+The naive recurive solution is pretty simple. At any point we ony care about the count of unmatched left-parens. So we can re-use the recursive balance checking and have a 3-way branch for an asterisk.
+Where the unbalanced count either:
+1. Increases by 1 (assume =*= acts as ~(~)
+2. Decreases by 1 (assume =*= acts as =)=), or
+3, Stays the same (assume =*= is a non-paren token)
+
+This means that we have =O(3^k)= branches that we would potentially need to look at before we could verify our string as a valid string.
+
+Here's a sample python implementation:
+
+#+BEGIN_SRC python
+def _validateCount(unbalanced, pos, string):
+    if unbalanced < 0:
+        return False
+    if pos < len(string):
+        if string[pos] == '(':
+            return _validateCount(unbalanced + 1, pos + 1, string)
+        elif string[pos] == ')':
+            return _validateCount(unbalanced + 1, pos + 1, string)
+        elif string[pos] == '*':
+            return (_validateCount(unbalanced + 1, pos + 1, string) or
+                    _validateCount(unbalanced, pos + 1, string) or
+                    _validateCount(unbalanced - 1, pos + 1, string))
+        return None
+    else:
+        return unbalanced == 0
+
+def validateParens(string):
+    return _validateCount(0, 0, string)
+#+END_SRC
+
+*** Afterthoughts
+Obviously, that did not pass the time-complexity requirements. But I don't think I was particularly optimistic.
+
+Now we have a candidate to optimize. So what does this helper =_validateCount= do?
+
+1. It makes a huge ternary-tree and tries to find a path from the root of that tree to a leaf, with unbalanced count equal to =0=.
+2. Also worth noting that we immediately discard paths where unbalanced count drops below =0=. Because that would mean we had more =)= than =(=.
+
+So the tree sort of just keeps track of ALL the counts at every point. We surely don't need ALL of the possible count values. If we know the lower and upper bounds that should be enough, because:
+
+- At every branch point if the current unbalanced count is =n=, we generate branches for: =n - 1=, =n=, and =n + 1=.
+- Starting from 0, and pruning negative branches we see that we'll have branches for every number in =[0, k]=.
+
+So keeping just the lower and upper bounds should be enough.
+
+** =ITERATION-2= Tracking the range of possible values for unbalanced count.
+
+Because we know that introducing the =*= character produces contiguous ranges of unbalanced count, we can try to re-model our naive-recursion into something that still does the same three things:
+
+1. Always move forward in the string
+2. If a =(= is seen, the unbalanced count range shifts right by 1 unit
+3. If a =)= is seen, the unbalanced count range shifts left by 1 unit
+4. If a =*= is seen, the left boundary of the range moves left by 1 unit, and the right boundary of the range moves right by 1 unit
+5. The initial range is =[0, 0]=
+6. The left end is clipped at 0
+7. The right end must ALWAYS be equal to, or be to the right of the left-end
+
+After processing the string, it is valid iff, the left-end of the range is at =0=, i.e there was a path on that tree that leads to a balanced interpretation.
+
+
+This is what it looks like:
+
+#+BEGIN_SRC python
+def validateParens(string):
+    # 5. The initial range is =[0, 0]=
+    leastUnmatched = 0
+    mostUnmatched = 0
+    # 1. Always move forward in the string
+    for char_ in string:
+        if char_ == '(':
+            # 2. If a =(= is seen, the unbalanced count range shifts right by 1 unit
+            leastUnmatched += 1
+            mostUnmatched += 1
+        elif char_ == ')':
+            # 3. If a =)= is seen, the unbalanced count range shifts left by 1 unit
+            leastUnmatched -= 1
+            mostUnmatched -= 1
+        elif char_ == '*':
+            # 4. If a =*= is seen, the left boundary of the range moves left by 1 unit,
+            # and the right boundary of the range moves right by 1 unit
+            leastUnmatched -= 1
+            mostUnmatched += 1
+        # 6. The left end is clipped at 0
+        leastUnmatched = max(leastUnmatched, 0)
+
+        # 7. The right end must ALWAYS be equal to, or be to the right of the left-end
+        if mostUnmatched < leastUnmatched:
+            return False
+    # Check that there is a path to an unmatched count of 0 through the tree.
+    return leastUnmatched == 0
+#+END_SRC
+
+
+** Honorary mention -- Using a stack
+
+I like this solution because this is what I was thinking about initially, but chose not to implement for whatever strange reason.
+It is pretty interesting, and definitely worth noting since it relies on an understanding of how the automaton accepting such a grammar works.
+
+Idea: storing away the indices for =(= and =*= on separate stacks, and validating that there are enough 'valid' =*= characters to balance out the =(=.
+Whenever we encounter a =)= we pop the nearest ~(~, or =*=, from the respective stack identical to how the count functions, and how the grammar for this sort of a system would work:
+
+#+BEGIN_SRC ebnf
+left  ::= '(' | '*'
+right ::= ')' | '*'
+S     ::= (left S right) | S S | ''
+#+END_SRC
+
+
+Once we are done traversing through the string, collecing our stacks of unmatched ~(~, and =*=, the system is balanced if there are enough =)=-like =*= characters, i.e.:
+
+1. For each of the =(= characters, there must be atleast one =*= character after the left-paren index (because it acts like a =)= in that context)
+
+#+BEGIN_SRC python
+import sys
+
+def validateParens(string):
+    lparens = []
+    asterisks = []
+    # First, read through the string, collecing unmatched ( and *
+    # ) will pop the nearest ( or *
+    for idx, char_ in enumerate(string):
+        # Track ( chars on their own stack
+        if char_ == '(':
+            lparens.append(idx)
+        # Track * chars on their own stack
+        elif char_ == '*'
+            asterisks.append(idx)
+        # ) pops the nearest
+        elif char_ == ')':
+            distance = sys.maxint
+            nearest = None
+            if lparens:
+                 distance = min(distance, idx - lparens[-1])
+                 nearest = lparens
+            if asterisks and distance > (idx - astersks[-1]):
+                 nearest = asterisks
+            if nearest and distance > 0:
+                nearest.pop()
+            else:
+                # There were no valid nearest indices
+                # We're overrun by RPARENS.
+                return False
+    # Now walk through the list of lparen and asterisks to ensure that each LPAREN
+    # has an ASTERISK to its right
+    while lparens and asterisks:
+        lp_idx = lparens.pop()
+        # Consume asterisks till we find an index that satisfies the current LPAREN
+        while asterisks and lp_idx > asterisks[-1]:
+            asterisks.pop()
+    # Valid if no lparens left
+    return len(lparens) == 0
+#+END_SRC
