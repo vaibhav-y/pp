@@ -6,3 +6,4 @@
 * [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray): I don't know why, but I never get _why_ the solution works.
 * [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/): SAME AS 53. I THINK WE PARTITION OUR SEARCH AROUND THE `0`s. NOT SURE THO TBH.
 * [334. Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence): Improve notes.
+* [916. Word Subsets](https://leetcode.com/problems/word-subsets/): Will you remember the non-TLE trick next time? Can you speed it up some more? 200ms / 65% isn't top tier.
