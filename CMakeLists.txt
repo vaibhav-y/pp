@@ -42,6 +42,7 @@ set (TEST_TARGETS
      0746-min-cost-climbing-stairs
      0848-shifting-letters
      0890-find-and-replace-pattern
+     0916-word-subsets
 )
 
 foreach (TEST ${TEST_TARGETS})
