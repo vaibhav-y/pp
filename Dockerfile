@@ -17,8 +17,6 @@ RUN export GTEST_DIR="/googletest/googletest/" GTEST_LIB_DIR="/googletest/build/
 COPY . /tmp/project
 WORKDIR /tmp/project
 
-RUN ./build-and-test.sh
-
-ADD entrypoint.sh /entrypoint.sh
+ADD build-and-test.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
