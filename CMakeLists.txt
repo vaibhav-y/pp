@@ -21,6 +21,7 @@ set (TEST_TARGETS
      0009-palindrome-number
      0011-container-with-most-water
      0017-letter-combinations-of-a-phone-number
+     0029-divide-two-integers
      0043-multiply-strings
      0049-group-anagrams
      0062-unique-paths
