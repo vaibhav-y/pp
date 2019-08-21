@@ -17,7 +17,10 @@ protected:
 
 INSTANTIATE_TEST_CASE_P(SearchRangeTest, P0034_SeachRange,
   ::testing::Values(
-    t({{}, 0}, {-1, -1})
+    t({{}, 0}, {-1, -1}),
+    t({{1, 1}, 1}, {0, 1}),
+    t({{2, 2, 2}, 2}, {0, 2}),
+    t({{}, {}}, {})
   )
 );
 

@@ -3,15 +3,19 @@
 #endif
 
 #include <vector>
-
+#include <iostream>
 namespace p0034 {
 class Solution {
+private:
+  int lowerBound(std::vector<int> &nums, int target) {
+  }
+
+
+  int upperBound(std::vector<int> &nums, int target) {
+  }
 public:
   std::vector<int> searchRange(std::vector<int> &nums, int target) {
-    if (nums.empty()) {
-      return {-1, -1};
-    }
-    return {};
+    return {lowerBound(nums, target), upperBound(nums, target)};
   }
 };
 } // namespace p0034
