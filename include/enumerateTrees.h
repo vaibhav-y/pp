@@ -3,14 +3,13 @@
 #endif
 
 #include <vector>
-
-#include <TreeNode.h>
+#include "TreeNode.h"
 
 namespace p0095 {
 class Solution {
 public:
   std::vector<TreeNode*> generateTrees(int n) {
-    
+    return {};
   }
 };
 } // namespace p0095
