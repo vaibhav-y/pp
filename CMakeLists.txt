@@ -29,6 +29,7 @@ set (TEST_TARGETS
      0071-simplify-path
      0093-restore-ip-addresses
      0094-binary-tree-inorder-traversal
+     0095-unique-binary-search-trees-2
      0096-unique-binary-search-trees
      0070-climbing-stairs
      0120-triangle
