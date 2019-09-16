@@ -28,6 +28,7 @@ set (TEST_TARGETS
      0064-minimum-path-sum
      0071-simplify-path
      0093-restore-ip-addresses
+     0094-binary-tree-inorder-traversal
      0096-unique-binary-search-trees
      0070-climbing-stairs
      0120-triangle

@@ -12,6 +12,10 @@ struct TreeNode {
   TreeNode *left;
   TreeNode *right;
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+  ~TreeNode() {
+    delete left;
+    delete right;
+  }
 };
 
 inline std::string treeNodeToString(TreeNode *root) {
@@ -31,7 +35,7 @@ inline std::string treeNodeToString(TreeNode *root) {
       continue;
     }
 
-    output += to_string(node->val) + ", ";
+    output += std::to_string(node->val) + ", ";
     q.push(node->left);
     q.push(node->right);
   }
@@ -65,7 +69,7 @@ inline TreeNode *stringToTreeNode(std::string input) {
 
   getline(ss, item, ',');
   TreeNode *root = new TreeNode(std::stoi(item));
-  queue<TreeNode *> nodeQueue;
+  std::queue<TreeNode *> nodeQueue;
   nodeQueue.push(root);
 
   while (true) {
@@ -109,7 +113,7 @@ inline void prettyPrintTree(std::ostream &os, TreeNode *node,
                     false);
   }
 
-  os << prefix + (isLeft ? "└── " : "┌── ") + to_string(node->val) + "\n";
+  os << prefix + (isLeft ? "└── " : "┌── ") + std::to_string(node->val) + "\n";
 
   if (node->left) {
     prettyPrintTree(os, node->left, prefix + (isLeft ? "    " : "│   "), true);
