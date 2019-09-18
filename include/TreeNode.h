@@ -12,6 +12,12 @@ struct TreeNode {
   TreeNode *left;
   TreeNode *right;
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+
+  bool operator==(TreeNode other) {
+    return val == other.val && (*left == *other.left) &&
+           (*right == *other.right);
+  }
+
   ~TreeNode() {
     delete left;
     delete right;
