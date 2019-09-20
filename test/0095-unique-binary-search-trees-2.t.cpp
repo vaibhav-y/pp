@@ -28,11 +28,17 @@ std::ostream& operator<<(std::ostream &os, TreeNode* root) {
 }
 
 TEST_P(P0095_EnumerateTreesTest, Generic) {
-  std::vector<TreeNode *> output = GetParam().second;
   int input = GetParam().first;
-  EXPECT_EQ(output, sol.generateTrees(input));
+  std::vector<TreeNode *> expected = GetParam().second;
+  std::vector<TreeNode *> output = sol.generateTrees(input);
+
+  EXPECT_EQ(expected, output);
 
   for (auto root : output) {
+    delete root;
+  }
+
+  for (auto root : expected) {
     delete root;
   }
 }
