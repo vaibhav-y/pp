@@ -26,18 +26,19 @@ set (TEST_TARGETS
      0049-group-anagrams
      0062-unique-paths
      0064-minimum-path-sum
+     0070-climbing-stairs
      0071-simplify-path
      0093-restore-ip-addresses
      0094-binary-tree-inorder-traversal
      0096-unique-binary-search-trees
-     0070-climbing-stairs
+     0098-validate-binary-search-tree
      0120-triangle
      0121-best-time-to-buy-and-sell-stock
      0198-house-robber
      0300-longest-increasing-subsequence
+     0322-coin-change
      0334-increasing-triplet-subsequence
      0338-counting-bits
-     0322-coin-change
      0647-palindromic-substrings
      0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
