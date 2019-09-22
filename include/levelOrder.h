@@ -9,6 +9,7 @@
 
 namespace p0102 {
 class Solution {
+public:
   std::vector<std::vector<int>> levelOrder(TreeNode *root) {
     std::vector<std::vector<int>> levels;
     if (!root) {
