@@ -2,10 +2,10 @@
 #error Wont include solution header
 #endif
 
-#include <vector>
+#include <iostream>
 #include <queue>
 #include <utility>
-#include <iostream>
+#include <vector>
 
 #include "TreeNode.h"
 
@@ -28,7 +28,7 @@ public:
       levels.push_back({});
       levels.back().reserve(parentQ.size());
 
-      while(!parentQ.empty()) {
+      while (!parentQ.empty()) {
         const auto &current = parentQ.front();
         levels.back().push_back(current->val);
         if (current->left) {
