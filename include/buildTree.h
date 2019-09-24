@@ -13,13 +13,14 @@ namespace p0105 {
 class Solution {
   typedef std::vector<int>::const_iterator CIT;
 
-  TreeNode *buildTreeRecursive(CIT preOrderFirst, CIT preOrderLast,
-                               CIT inOrderFirst, CIT inOrderLast) {
-
-    TreeNode *root = new TreeNode(*preOrderFirst);
-    if (std::next(preOrderFirst) == preOrderLast) {
-      return root;
+  TreeNode *buildTree(CIT preOrderFirst, CIT preOrderLast, CIT inOrderFirst,
+                      CIT inOrderLast) {
+    if (preOrderFirst == preOrderLast) {
+      return nullptr;
+    } else if (std::next(preOrderFirst) == preOrderLast) {
+      return new TreeNode(*preOrderFirst);
     }
+    TreeNode *root = new TreeNode(*preOrderFirst);
     // Pre-order array is structured recursively as follows
     //  [root, ...left, ...right]
     // In-order array is structured as follows:
@@ -31,13 +32,12 @@ class Solution {
     size_t leftSize = std::distance(inOrderFirst, rootLoc);
     size_t rightSize = std::distance(rootLoc, inOrderLast);
     if (leftSize > 0) {
-      root->left =
-          buildTreeRecursive(preOrderFirst + 1, preOrderFirst + 1 + leftSize,
+      root->left = buildTree(preOrderFirst + 1, preOrderFirst + 1 + leftSize,
                              inOrderFirst, rootLoc);
     }
     if (rightSize > 0) {
-      root->right = buildTreeRecursive(preOrderFirst + 1 + leftSize,
-                                       preOrderLast, rootLoc + 1, inOrderLast);
+      root->right = buildTree(preOrderFirst + 1 + leftSize, preOrderLast,
+                              rootLoc + 1, inOrderLast);
     }
     return root;
   }
@@ -48,8 +48,8 @@ public:
     if (preorder.empty()) {
       return nullptr;
     }
-    return buildTreeRecursive(preorder.begin(), preorder.end(), inorder.begin(),
-                              inorder.end());
+    return buildTree(preorder.begin(), preorder.end(), inorder.begin(),
+                     inorder.end());
   }
 };
 } // namespace p0105
