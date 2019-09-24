@@ -12,11 +12,29 @@ struct TreeNode {
   TreeNode *left;
   TreeNode *right;
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+  bool compare(const TreeNode &other) const {
+    if (val != other.val) {
+      return false;
+    }
+    if (left && !left->compare(*other.left)) {
+      return false;
+    }
+    if (right && !right->compare(*other.right)) {
+      return false;
+    }
+    return true;
+  }
   ~TreeNode() {
-    delete left;
-    delete right;
+    if (left) {
+      delete left;
+    }
+    if (right) {
+      delete right;
+    }
   }
 };
+
+bool operator==(TreeNode lhs, TreeNode rhs) { return lhs.compare(rhs); }
 
 inline std::string treeNodeToString(TreeNode *root) {
   if (root == nullptr) {
@@ -101,23 +119,26 @@ inline TreeNode *stringToTreeNode(std::string input) {
   return root;
 }
 
-inline void prettyPrintTree(std::ostream &os, TreeNode *node,
-                            std::string prefix = "", bool isLeft = true) {
+inline std::ostream& operator<<(std::ostream &os, TreeNode *node) {
+  std::string prefix = "";
+  bool isLeft = true;
+
   if (node == nullptr) {
-    os << "Empty tree";
-    return;
+    os << "ø";
+    return os;
   }
 
   if (node->right) {
-    prettyPrintTree(os, node->right, prefix + (isLeft ? "│   " : "    "),
-                    false);
+    os << prefix + (isLeft ? "│   " : "    ") << node->right;
   }
 
   os << prefix + (isLeft ? "└── " : "┌── ") + std::to_string(node->val) + "\n";
 
   if (node->left) {
-    prettyPrintTree(os, node->left, prefix + (isLeft ? "    " : "│   "), true);
+    os << prefix + (isLeft ? "    " : "│   ") << node->left;
   }
+
+  return os;
 }
 
 #endif
