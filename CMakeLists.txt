@@ -34,6 +34,7 @@ set (TEST_TARGETS
      0098-validate-binary-search-tree
      0102-binary-tree-level-order-traversal
      0103-binary-tree-zigzag-level-order-traversal
+     0105-construct-binary-tree
      0120-triangle
      0121-best-time-to-buy-and-sell-stock
      0198-house-robber
