@@ -3,7 +3,8 @@
 #include <vector>
 
 #include "TreeNode.h"
-#include "buildTree.h"
+
+#include <0106/buildTree.h>
 
 
 typedef std::pair<std::vector<int>, std::vector<int>> INPUT;
@@ -23,11 +24,11 @@ protected:
 INSTANTIATE_TEST_CASE_P(ConstructTree, P0106_ConstructBinaryTree,
   ::testing::Values(
     t(In({}, {}), Tree("[]")),
-    t(In({4,5,2,6,7,3,1}, {4,2,5,1,6,3,7}), Tree("[1,2,3,4,5,6,7]")),
-    t(In({6,7,3,1}, {1,6,3,7}), Tree("[1,null,3,6,7]")),
-    t(In({4,5,2,1}, {4,2,5,1}), Tree("[1,2,null,4,5]")),
-    t(In({9,15,7,20,3}, {9,3,15,20,7}), Tree("[3,9,20,null,null,15,7]")),
-    t(In({4,5,2,3,1}, {4,2,5,1,3}), Tree("[1,2,3,4,5,null,null]"))
+    t(In({4,2,5,1,6,3,7}, {4,5,2,6,7,3,1}), Tree("[1,2,3,4,5,6,7]")),
+    t(In({1,6,3,7}, {6,7,3,1}), Tree("[1,null,3,6,7]")),
+    t(In({4,2,5,1}, {4,5,2,1}), Tree("[1,2,null,4,5]")),
+    t(In({9,3,15,20,7}, {9,15,7,20,3}), Tree("[3,9,20,null,null,15,7]")),
+    t(In({4,2,5,1,3}, {4,5,2,3,1}), Tree("[1,2,3,4,5,null,null]"))
 
 ));
 
@@ -35,8 +36,8 @@ INSTANTIATE_TEST_CASE_P(ConstructTree, P0106_ConstructBinaryTree,
 TEST_P(P0106_ConstructBinaryTree, Generic) {
   auto &input = GetParam().first;
   auto &expected = GetParam().second;
-  auto &postorder = input.first;
-  auto &inorder = input.second;
+  auto &inorder = input.first;
+  auto &postorder = input.second;
   const auto &output =
       sol.buildTree(const_cast<INPUT::first_type&>(inorder),
                     const_cast<INPUT::second_type&>(postorder));
@@ -45,11 +46,10 @@ TEST_P(P0106_ConstructBinaryTree, Generic) {
     std::stringstream ss;
     ss << "Expected:\n" << expected << "\n" <<
           "Actual:  \n" << output;
-    EXPECT_EQ(*expected, *output) << ss.str();
-  }
-  else {
-    FAIL() <<
-    "Expected:\n" << expected << "\n" <<
-    "Actual:  \n" << output;
+    EXPECT_EQ(*expected, *output) << "\n" << ss.str();
+  } else if (expected == nullptr) {
+    EXPECT_EQ(nullptr, output);
+  } else {
+    FAIL() << "Expected non-null return value";
   }
 }
