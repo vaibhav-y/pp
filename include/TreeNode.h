@@ -119,7 +119,7 @@ inline TreeNode *stringToTreeNode(std::string input) {
   return root;
 }
 
-inline std::ostream& operator<<(std::ostream &os, TreeNode *node) {
+inline std::ostringstream &operator<<(std::ostringstream &os, TreeNode *node) {
   std::string prefix = "";
   bool isLeft = true;
 
@@ -139,6 +139,10 @@ inline std::ostream& operator<<(std::ostream &os, TreeNode *node) {
   }
 
   return os;
+}
+
+inline std::ostream &operator<<(std::ostream &os, TreeNode *node) {
+  return os << treeNodeToString(node);
 }
 
 #endif
