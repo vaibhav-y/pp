@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace p062 {
+namespace p0062 {
 class Solution {
 public:
   int uniquePaths(int m, int n) {

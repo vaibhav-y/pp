@@ -4,7 +4,7 @@
 
 #define INCLUDED_SOLUTION_HEADER
 
-namespace p070 {
+namespace p0070 {
 class Solution {
 public:
   int climbStairs(int n) {

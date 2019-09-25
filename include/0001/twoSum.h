@@ -9,7 +9,7 @@
 #include <map>
 #include <vector>
 
-namespace p001 {
+namespace p0001 {
 class Solution {
 public:
   std::vector<int> twoSum(std::vector<int> &nums, int target) {

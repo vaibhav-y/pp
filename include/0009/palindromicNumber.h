@@ -4,7 +4,7 @@
 
 #define INCLUED_SOLUTION_HEADER
 
-namespace p009 {
+namespace p0009 {
 class Solution {
 public:
   bool isPalindrome(int x) {

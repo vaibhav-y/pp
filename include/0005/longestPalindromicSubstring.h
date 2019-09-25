@@ -10,7 +10,7 @@
 
 #include "Common.h"
 
-namespace p005 {
+namespace p0005 {
 class Solution {
 private:
   inline std::string grow(const std::string &src, size_t begin, size_t end) {

@@ -7,7 +7,7 @@
 #include <map>
 #include <string>
 
-namespace p003 {
+namespace p0003 {
 class Solution {
 private:
   int max(int a, int b) { return a > b ? a : b; }

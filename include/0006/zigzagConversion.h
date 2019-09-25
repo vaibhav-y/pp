@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace p006 {
+namespace p0006 {
 class Solution {
 public:
   std::string convert(std::string s, int numRows) {

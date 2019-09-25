@@ -7,7 +7,7 @@
 #include <limits>
 #include <vector>
 
-namespace p004 {
+namespace p0004 {
 class Solution {
 public:
   double findMedianSortedArrays(std::vector<int> &nums1,

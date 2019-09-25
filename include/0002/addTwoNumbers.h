@@ -5,7 +5,7 @@ static_assert(false, "Won't include multiple solution headers together!")
 
 #include "Common.h"
 
-namespace p002 {
+namespace p0002 {
 class Solution {
 public:
   ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
