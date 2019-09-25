@@ -7,7 +7,7 @@
 #include <limits>
 #include <string>
 
-namespace p008 {
+namespace p0008 {
 class Solution {
 private:
   /* Checks if the expression 10 * quotient + rem can overflow

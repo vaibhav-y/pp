@@ -52,11 +52,19 @@ set (TEST_TARGETS
 )
 
 foreach (TEST ${TEST_TARGETS})
-    add_executable(${TEST}.t
+    # So far our test ids are any number between 0000-9999
+    # Each of our tests begin with an id, followed by a name
+    string(SUBSTRING "${TEST}" 0 4  TEST_ID)
+
+    add_executable(${TEST_ID}.t
                    test/${TEST}.t.cpp)
 
+    # Configure the source library to generate a named library for us
     add_library(${TEST} src/${TEST}.cpp)
-    target_include_directories(${TEST} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    target_include_directories(${TEST}
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/${TEST_ID})
 
     target_compile_features(${TEST} PRIVATE cxx_std_17)
     target_compile_options(${TEST}
@@ -67,8 +75,9 @@ foreach (TEST ${TEST_TARGETS})
          -fsanitize=undefined
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
-    target_compile_features(${TEST}.t PRIVATE cxx_std_17)
-    target_compile_options(${TEST}.t
+    # Configure the test binary, here onwards
+    target_compile_features(${TEST_ID}.t PRIVATE cxx_std_17)
+    target_compile_options(${TEST_ID}.t
          PRIVATE
          -g
          -Wall -Werror
@@ -76,7 +85,11 @@ foreach (TEST ${TEST_TARGETS})
          -fsanitize=undefined
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
-    target_link_libraries(${TEST}.t
+    target_include_directories(${TEST_ID}.t
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/${TEST_ID})
+
+    target_link_libraries(${TEST_ID}.t
                           PRIVATE
                           -fsanitize=address
                           -fsanitize=undefined
@@ -84,5 +97,5 @@ foreach (TEST ${TEST_TARGETS})
                           ${GTEST_BOTH_LIBRARIES}
                           pthread)
     add_test(NAME ${TEST}
-             COMMAND ${TEST}.t)
+             COMMAND ${TEST_ID}.t)
 endforeach (TEST)

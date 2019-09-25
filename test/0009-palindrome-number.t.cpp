@@ -3,13 +3,13 @@
 
 #include "palindromicNumber.h"
 
-class P009_ShittyPalindrome
+class P0009_ShittyPalindrome
     : public ::testing::TestWithParam<std::pair<int, bool>> {
 protected:
-  p009::Solution sol;
+  p0009::Solution sol;
 };
 
-INSTANTIATE_TEST_CASE_P(AtoiTest, P009_ShittyPalindrome,
+INSTANTIATE_TEST_CASE_P(AtoiTest, P0009_ShittyPalindrome,
                         ::testing::Values(std::make_pair(42, false),
                                           std::make_pair(10, false),
                                           std::make_pair(0, true),
@@ -18,6 +18,6 @@ INSTANTIATE_TEST_CASE_P(AtoiTest, P009_ShittyPalindrome,
                                           std::make_pair(2147447412, true),
                                           std::make_pair(11, true)));
 
-TEST_P(P009_ShittyPalindrome, Generic) {
+TEST_P(P0009_ShittyPalindrome, Generic) {
   EXPECT_EQ(sol.isPalindrome(GetParam().first), GetParam().second);
 }

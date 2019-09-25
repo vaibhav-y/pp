@@ -3,14 +3,14 @@
 
 #include "atoi.h"
 
-class P008_CustomAtoi
+class P0008_CustomAtoi
     : public ::testing::TestWithParam<std::pair<std::string, int>> {
 protected:
-  p008::Solution sol;
+  p0008::Solution sol;
 };
 
 INSTANTIATE_TEST_CASE_P(
-    AtoiTest, P008_CustomAtoi,
+    AtoiTest, P0008_CustomAtoi,
     ::testing::Values(std::make_pair("42", 42), std::make_pair("02", 2),
                       std::make_pair("20", 20), std::make_pair("-123", -123),
                       std::make_pair("-123", -123),
@@ -26,6 +26,6 @@ INSTANTIATE_TEST_CASE_P(
                       std::make_pair("2147483646", 2147483646),
                       std::make_pair("+214748364", 214748364)));
 
-TEST_P(P008_CustomAtoi, Generic) {
+TEST_P(P0008_CustomAtoi, Generic) {
   EXPECT_EQ(sol.myAtoi(GetParam().first), GetParam().second);
 }

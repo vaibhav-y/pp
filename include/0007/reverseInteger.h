@@ -5,7 +5,7 @@
 #include <cmath>
 #include <limits>
 
-namespace p007 {
+namespace p0007 {
 class Solution {
 private:
   inline bool checkOverflow_(int quotient, int rem) const {

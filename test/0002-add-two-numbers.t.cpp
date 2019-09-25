@@ -2,7 +2,7 @@
 #include "addTwoNumbers.h"
 #include <gtest/gtest.h>
 
-using p002::Solution;
+using p0002::Solution;
 
 void freeList(ListNode *node) {
   if (!node) {
@@ -13,7 +13,7 @@ void freeList(ListNode *node) {
   delete node;
 }
 
-TEST(P002_AddTwoNumbers, BothAreNull) {
+TEST(P0002_AddTwoNumbers, BothAreNull) {
   Solution sol;
   ListNode *l1 = nullptr;
   ListNode *l2 = nullptr;
@@ -23,8 +23,8 @@ TEST(P002_AddTwoNumbers, BothAreNull) {
   freeList(l2);
 }
 
-TEST(P002_AddTwoNumbers, OneListIsNull) {
-  p002::Solution sol;
+TEST(P0002_AddTwoNumbers, OneListIsNull) {
+  p0002::Solution sol;
 
   ListNode *l1 = new ListNode(2);
   l1->next = new ListNode(4);
@@ -34,7 +34,7 @@ TEST(P002_AddTwoNumbers, OneListIsNull) {
   freeList(l1);
 }
 
-TEST(P002_AddTwoNumbers, NonNullSameSize) {
+TEST(P0002_AddTwoNumbers, NonNullSameSize) {
   Solution sol;
   // Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
   // Output: 7 -> 0 -> 8
@@ -60,7 +60,7 @@ TEST(P002_AddTwoNumbers, NonNullSameSize) {
   freeList(sum);
 }
 
-TEST(P002_AddTwoNumbers, NonNullDisparateSize) {
+TEST(P0002_AddTwoNumbers, NonNullDisparateSize) {
   Solution sol;
   // Input: (1) + (9 -> 9 -> 9)
   // Output: 0 -> 0 -> 0-> 1

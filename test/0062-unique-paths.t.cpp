@@ -9,12 +9,12 @@ typedef std::pair<INPUT, OUTPUT> TESTCASE;
 
 auto& t = std::make_pair<INPUT, OUTPUT>;
 
-class P062_UniquePaths : public ::testing::TestWithParam<TESTCASE> {
+class P0062_UniquePaths : public ::testing::TestWithParam<TESTCASE> {
 protected:
-  p062::Solution sol;
+  p0062::Solution sol;
 };
 
-INSTANTIATE_TEST_CASE_P(UniqePathsTest, P062_UniquePaths,
+INSTANTIATE_TEST_CASE_P(UniqePathsTest, P0062_UniquePaths,
                         ::testing::Values(
                           t({1, 1}, 1),
                           t({2, 1}, 1),
@@ -29,7 +29,7 @@ INSTANTIATE_TEST_CASE_P(UniqePathsTest, P062_UniquePaths,
                           t({7, 4}, 84)
                         ));
 
-TEST_P(P062_UniquePaths, Generic) {
+TEST_P(P0062_UniquePaths, Generic) {
   int n = GetParam().first.first;
   int m = GetParam().first.second;
 

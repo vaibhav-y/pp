@@ -9,12 +9,12 @@ typedef std::pair<INPUT, OUTPUT> TESTCASE;
 
 auto& t = std::make_pair<INPUT, OUTPUT>;
 
-class P070_ClimbingStairs : public ::testing::TestWithParam<TESTCASE> {
+class P0070_ClimbingStairs : public ::testing::TestWithParam<TESTCASE> {
   protected:
-  p070::Solution sol;
+  p0070::Solution sol;
 };
 
-INSTANTIATE_TEST_CASE_P(ClimbingStairsTest, P070_ClimbingStairs,
+INSTANTIATE_TEST_CASE_P(ClimbingStairsTest, P0070_ClimbingStairs,
   ::testing::Values(
     t(1, 1),
     t(2, 2),
@@ -27,7 +27,7 @@ INSTANTIATE_TEST_CASE_P(ClimbingStairsTest, P070_ClimbingStairs,
   ));
 
 
-TEST_P(P070_ClimbingStairs, Generic) {
+TEST_P(P0070_ClimbingStairs, Generic) {
   EXPECT_EQ(GetParam().second,
             sol.climbStairs(GetParam().first));
 }

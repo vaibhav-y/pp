@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace p063 {
+namespace p0063 {
 class Solution {
 public:
   int uniquePathsWithObstacles(std::vector<std::vector<int>> &obstacleGrid) {
