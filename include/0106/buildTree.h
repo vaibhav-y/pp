@@ -21,7 +21,7 @@ class Solution {
   };
 
   TreeNode *buildTree(const Range &inorderRange, const Range &postorderRange,
-                      RootMap rootLocs) {
+                      const RootMap &rootLocs) {
     if (postorderRange.first == postorderRange.last) {
       return nullptr;
     } else if (std::next(postorderRange.first) == postorderRange.last) {
