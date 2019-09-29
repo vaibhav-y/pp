@@ -30,7 +30,7 @@ private:
       paths.push_back(current);
     }
 
-    // Descend Post order
+    // Descend preorder
     traverse(root->left, target - root->val, current, paths);
     traverse(root->right, target - root->val, current, paths);
 
