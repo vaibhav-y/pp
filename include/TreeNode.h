@@ -34,7 +34,15 @@ struct TreeNode {
   }
 };
 
-bool operator==(TreeNode lhs, TreeNode rhs) { return lhs.compare(rhs); }
+inline bool operator==(TreeNode lhs, TreeNode rhs) { return lhs.compare(rhs); }
+
+inline bool TreeEq(TreeNode *lhs, TreeNode *rhs) {
+  if (lhs && rhs) {
+    return *lhs == *rhs;
+  } else {
+    return lhs == rhs;
+  }
+}
 
 inline std::string treeNodeToString(TreeNode *root) {
   if (root == nullptr) {
