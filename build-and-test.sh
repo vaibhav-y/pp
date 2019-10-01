@@ -12,7 +12,7 @@ if which llvm-config >/dev/null 2>&1; then
     export LLVM_BINDIR=$(llvm-config --bindir)
     export CC="${LLVM_BINDIR}/clang"
     export CXX="${LLVM_BINDIR}/clang++"
-    export _CMAKE_EXTRA_ARGS="-DCMAKE_LINKER=${LLVM_BINDIR}/ld64.lld"
+    export _CMAKE_EXTRA_ARGS="-DCMAKE_LINKER=${LLVM_BINDIR}/ld64.lld -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 fi;
 
 cmake \

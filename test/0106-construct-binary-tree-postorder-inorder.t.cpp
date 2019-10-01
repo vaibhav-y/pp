@@ -41,15 +41,7 @@ TEST_P(P0106_ConstructBinaryTree, Generic) {
   const auto &output =
       sol.buildTree(const_cast<INPUT::first_type&>(inorder),
                     const_cast<INPUT::second_type&>(postorder));
-
-  if (expected != nullptr && output != nullptr) {
-    std::stringstream ss;
-    ss << "Expected:\n" << expected << "\n" <<
-          "Actual:  \n" << output;
-    EXPECT_EQ(*expected, *output) << "\n" << ss.str();
-  } else if (expected == nullptr) {
-    EXPECT_EQ(nullptr, output);
-  } else {
-    FAIL() << "Expected non-null return value";
-  }
+  EXPECT_PRED2(TreeEq, expected, output);
+  delete expected;
+  delete output;
 }

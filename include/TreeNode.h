@@ -25,14 +25,11 @@ struct TreeNode {
     return true;
   }
   ~TreeNode() {
-    if (left) {
-      delete left;
-    }
-    if (right) {
-      delete right;
-    }
+    delete right;
+    delete left;
   }
 };
+
 
 inline bool operator==(TreeNode lhs, TreeNode rhs) { return lhs.compare(rhs); }
 
