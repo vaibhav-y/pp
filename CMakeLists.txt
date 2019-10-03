@@ -41,6 +41,7 @@ set (TEST_TARGETS
      0120-triangle
      0121-best-time-to-buy-and-sell-stock
      0129-sum-root-to-leaf-numbers
+     0144-binary-tree-preorder-traversal
      0198-house-robber
      0300-longest-increasing-subsequence
      0322-coin-change
