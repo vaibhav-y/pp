@@ -34,6 +34,4 @@ TEST_P(P0114_FlattenTree, Generic) {
   auto expected = params.second;
   sol.flatten(tree);
   EXPECT_PRED2(TreeEq, expected, tree);
-  delete expected;
-  delete tree;
 }

@@ -39,6 +39,4 @@ TEST_P(P0105_ConstructBinaryTree, Generic) {
       sol.buildTree(const_cast<INPUT::first_type&>(input.first),
                     const_cast<INPUT::second_type&>(input.second));
   EXPECT_PRED2(TreeEq, expected, output);
-  delete expected;
-  delete output;
 }

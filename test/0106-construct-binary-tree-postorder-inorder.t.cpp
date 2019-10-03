@@ -4,7 +4,7 @@
 
 #include "TreeNode.h"
 
-#include <0106/buildTree.h>
+#include <buildTree.h>
 
 
 typedef std::pair<std::vector<int>, std::vector<int>> INPUT;
@@ -42,6 +42,4 @@ TEST_P(P0106_ConstructBinaryTree, Generic) {
       sol.buildTree(const_cast<INPUT::first_type&>(inorder),
                     const_cast<INPUT::second_type&>(postorder));
   EXPECT_PRED2(TreeEq, expected, output);
-  delete expected;
-  delete output;
 }
