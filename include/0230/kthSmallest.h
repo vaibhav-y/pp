@@ -2,30 +2,34 @@
 #error Wont include multple solution headers
 #endif
 
+#include <vector>
+#include <limits>
+
 #include <TreeNode.h>
 
 namespace p0230 {
 class Solution {
-  int countNodes(TreeNode* root) {
-    if (!root) {
-      return 0;
-    }
-    return 1 + countNodes(root->left) + countNodes(root->right);
-  }
 public:
   int kthSmallest(TreeNode *root, int k) {
-    // This could also be done via an inorder traversal + counter
-    // for deeper trees, but I suppose this is fine if we can ge the compiler
-    // to generate tail call optimized code
-    int leftSize = countNodes(root->left);
+    std::vector<TreeNode *> nodeStack;
+    while (true) {
+      while (root) {
+        nodeStack.push_back(root);
+        root = root->left;
+      }
 
-    if (k <= leftSize) {
-      return kthSmallest(root->left, k);
-    } else if (k == leftSize + 1) {
-      return root->val;
-    } else {
-      return kthSmallest(root->right, k - leftSize - 1);
+      if (nodeStack.empty()) {
+        break;
+      }
+      root = nodeStack.back();
+      nodeStack.pop_back();
+      if (k == 1) {
+        return root->val;
+      }
+      --k;
+      root = root->right;
     }
+    std::terminate();
   }
 };
 }
