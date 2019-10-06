@@ -44,6 +44,7 @@ set (TEST_TARGETS
      0144-binary-tree-preorder-traversal
      0198-house-robber
      0222-count-complete-tree-nodes
+     0230-kth-smallest-element-in-a-bst
      0300-longest-increasing-subsequence
      0322-coin-change
      0334-increasing-triplet-subsequence
