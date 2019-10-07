@@ -43,6 +43,7 @@ set (TEST_TARGETS
      0129-sum-root-to-leaf-numbers
      0144-binary-tree-preorder-traversal
      0198-house-robber
+     0199-binary-tree-right-side-view
      0222-count-complete-tree-nodes
      0230-kth-smallest-element-in-a-bst
      # 0236-lowest-common-ancestor-of-a-binary-tree
