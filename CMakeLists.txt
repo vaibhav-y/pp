@@ -47,6 +47,7 @@ set (TEST_TARGETS
      0222-count-complete-tree-nodes
      0230-kth-smallest-element-in-a-bst
      # 0236-lowest-common-ancestor-of-a-binary-tree
+     # 0297-serialize-and-deserialize-binary-tree
      0300-longest-increasing-subsequence
      0322-coin-change
      0334-increasing-triplet-subsequence
