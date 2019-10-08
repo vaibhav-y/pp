@@ -51,6 +51,7 @@ set (TEST_TARGETS
      0322-coin-change
      0334-increasing-triplet-subsequence
      0338-counting-bits
+     0449-serialize-and-deserialize-bst
      0647-palindromic-substrings
      0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
