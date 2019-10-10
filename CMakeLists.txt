@@ -54,6 +54,7 @@ set (TEST_TARGETS
      0338-counting-bits
      0449-serialize-and-deserialize-bst
      0508-most-frequent-subtree-sum
+     0513-find-bottom-left-tree-value
      0647-palindromic-substrings
      0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
