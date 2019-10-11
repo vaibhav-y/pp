@@ -46,7 +46,9 @@ set (TEST_TARGETS
      0199-binary-tree-right-side-view
      0222-count-complete-tree-nodes
      0230-kth-smallest-element-in-a-bst
+     ## Really hard to test to exact pointers too much work.
      # 0236-lowest-common-ancestor-of-a-binary-tree
+     ## Identical to 449, but 'HARD'
      # 0297-serialize-and-deserialize-binary-tree
      0300-longest-increasing-subsequence
      0322-coin-change
@@ -60,6 +62,7 @@ set (TEST_TARGETS
      0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
+     ## Uses 'delete' that interferes with our destructor implementations
      # 0814-binary-tree-pruning
      0848-shifting-letters
      0890-find-and-replace-pattern
