@@ -60,6 +60,7 @@ set (TEST_TARGETS
      0678-valid-parenthesis-string
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
+     # 0814-binary-tree-pruning
      0848-shifting-letters
      0890-find-and-replace-pattern
      0916-word-subsets
