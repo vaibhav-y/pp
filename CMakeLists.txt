@@ -60,6 +60,7 @@ set (TEST_TARGETS
      0515-find-largest-value-in-each-tree-row
      0647-palindromic-substrings
      0678-valid-parenthesis-string
+     0701-insert-into-bst
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
      ## Uses 'delete' that interferes with our destructor implementations
