@@ -2,6 +2,7 @@
 #define TREECODEC_BFS
 
 #include <TreeNode.h>
+#include <cstring>
 #include <queue>
 #include <string>
 
