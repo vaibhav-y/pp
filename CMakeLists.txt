@@ -100,8 +100,6 @@ foreach (TEST ${TEST_TARGETS})
          PRIVATE
          -g
          -Wall -Werror
-         -fsanitize=address
-         -fsanitize=undefined
          $<$<CXX_COMPILER_ID:Clang>:-fcolor-diagnostics>)
 
     target_include_directories(${TEST_ID}.t
@@ -110,8 +108,6 @@ foreach (TEST ${TEST_TARGETS})
 
     target_link_libraries(${TEST_ID}.t
                           PRIVATE
-                          -fsanitize=address
-                          -fsanitize=undefined
                           ${TEST}
                           ${GTEST_BOTH_LIBRARIES}
                           pthread)
