@@ -58,6 +58,7 @@ set (TEST_TARGETS
      0508-most-frequent-subtree-sum
      0513-find-bottom-left-tree-value
      0515-find-largest-value-in-each-tree-row
+     0623-add-one-row-to-tree
      0647-palindromic-substrings
      0678-valid-parenthesis-string
      0701-insert-into-bst
