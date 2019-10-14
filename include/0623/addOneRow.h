@@ -2,6 +2,7 @@
 #define INCLUDED_SOLUTION_HEADER
 
 #include <TreeNode.h>
+#include <tuple>
 #include <queue>
 
 namespace p0623 {
