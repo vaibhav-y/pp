@@ -60,6 +60,7 @@ set (TEST_TARGETS
      0515-find-largest-value-in-each-tree-row
      0623-add-one-row-to-tree
      0647-palindromic-substrings
+     0652-find-duplicate-subtrees
      0678-valid-parenthesis-string
      0701-insert-into-bst
      0718-maximum-length-of-repeated-subarray
