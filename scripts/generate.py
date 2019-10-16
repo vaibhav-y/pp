@@ -268,7 +268,7 @@ def main(lang, title, srcDir, testDir, includeDir):
         returnType="XXX",
         testName=questionData.testPrefix,
         testIdentifier=questionData.testIdentifier,
-        includeBlock=questionData.cppIncludeBlock
+        includeBlock=questionData.cppIncludeBlock,
         # This is sort of a hack because I can't figure out how to escape
         # the `_` character in templates so that its no a part of the
         # identifier. So we have hack, the best way to solve problems
