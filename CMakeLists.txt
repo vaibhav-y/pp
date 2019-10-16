@@ -42,6 +42,7 @@ set (TEST_TARGETS
      0121-best-time-to-buy-and-sell-stock
      0129-sum-root-to-leaf-numbers
      0144-binary-tree-preorder-traversal
+     0169-majority-element
      0198-house-robber
      0199-binary-tree-right-side-view
      0222-count-complete-tree-nodes
