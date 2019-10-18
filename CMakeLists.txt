@@ -24,6 +24,7 @@ set (TEST_TARGETS
      0029-divide-two-integers
      0043-multiply-strings
      0049-group-anagrams
+     0053-maximum-subarray
      0062-unique-paths
      0064-minimum-path-sum
      0070-climbing-stairs
