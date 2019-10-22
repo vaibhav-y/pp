@@ -73,6 +73,7 @@ set (TEST_TARGETS
      0848-shifting-letters
      0890-find-and-replace-pattern
      0916-word-subsets
+     0973-k-closest-points-to-origin
 )
 
 foreach (TEST ${TEST_TARGETS})
