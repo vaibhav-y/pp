@@ -51,6 +51,7 @@ set (TEST_TARGETS
      0230-kth-smallest-element-in-a-bst
      ## Really hard to test to exact pointers too much work.
      # 0236-lowest-common-ancestor-of-a-binary-tree
+     0240-search-a-2d-matrix-ii
      0241-different-ways-to-add-parentheses
      ## Identical to 449, but 'HARD'
      # 0297-serialize-and-deserialize-binary-tree
