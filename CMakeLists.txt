@@ -78,6 +78,7 @@ set (TEST_TARGETS
      0890-find-and-replace-pattern
      0916-word-subsets
      0973-k-closest-points-to-origin
+     0997-find-the-town-judge
 )
 
 foreach (TEST ${TEST_TARGETS})
