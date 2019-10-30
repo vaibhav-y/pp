@@ -1,0 +1,20 @@
+#+TITLE: [[https://leetcode.com/problems/flower-planting-with-no-adjacent/][1042. Flower Planting With No Adjacent]]
+
+* Problem Statement
+
+There are a predetermined number of 'gardens' numbered =1= through =N=. We are given a list of
+paths between gardens, guaranteed that all gardens have at most 3 neighbours. Given this we are asked to
+choose a color for flowers to be planted in each garden (also numbered =1= through =4=)
+
+* Analysis
+
+This is an exercise in coloring a graph's vertices with a fixed number of colors. Here We have a limited number of colors (=4=)
+Which means that the maximum degree of a vertex is =3= (the graph is undirected. Directed graphs would require that
+in/out degree be constrained similarly).
+
+* Solution
+
+Since we are already guaranteed that the maximum degree of a vertex is =3=
+We can store the color of each vertex and iterate over the edge set, trying to assign a color to each new vertex, from the list of allowed colors
+There will always be at least 1 color available (note the maximum degree guarantees this: at most 3 distinct edges per vertex means there is exactly 1 color
+left behind in available color set).

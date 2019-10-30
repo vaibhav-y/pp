@@ -79,6 +79,7 @@ set (TEST_TARGETS
      0916-word-subsets
      0973-k-closest-points-to-origin
      0997-find-the-town-judge
+     1042-flower-planting-with-no-adjacent
 )
 
 foreach (TEST ${TEST_TARGETS})
