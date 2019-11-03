@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ $# -ne 1 ] && printf "Usage:\n    $0 <leetcode-title>" && exit 1;
+
+SCRIPT_DIR="$(realpath $(dirname $0))"
+
+$SCRIPT_DIR/generate.py -s src -t test -i include --title $1
