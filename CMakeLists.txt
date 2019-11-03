@@ -80,6 +80,7 @@ set (TEST_TARGETS
      0973-k-closest-points-to-origin
      0997-find-the-town-judge
      1042-flower-planting-with-no-adjacent
+     1161-maximum-level-sum-of-a-binary-tree
 )
 
 foreach (TEST ${TEST_TARGETS})
