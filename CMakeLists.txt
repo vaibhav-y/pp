@@ -74,6 +74,7 @@ set (TEST_TARGETS
      0746-min-cost-climbing-stairs
      ## Uses 'delete' that interferes with our destructor implementations
      # 0814-binary-tree-pruning
+     0841-keys-and-rooms
      0848-shifting-letters
      0890-find-and-replace-pattern
      0916-word-subsets
