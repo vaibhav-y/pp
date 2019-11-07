@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+[ $# -ne 1 ] && \
+    printf "RAT: Run a test\nUsage:\n    $0 <test-identifier>"&& \
+    exit 1;
+
+
+num=$(printf "%04d" $1)
+
+cmake --build build/ --target $num.t && ./build/$num.t
