@@ -69,6 +69,7 @@ set (TEST_TARGETS
      0652-find-duplicate-subtrees
      0654-maximum-binary-tree
      0678-valid-parenthesis-string
+     0684-redundant-connection
      0701-insert-into-bst
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
