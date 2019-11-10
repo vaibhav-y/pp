@@ -73,6 +73,7 @@ set (TEST_TARGETS
      0701-insert-into-bst
      0718-maximum-length-of-repeated-subarray
      0746-min-cost-climbing-stairs
+     0785-is-graph-bipartite
      ## Uses 'delete' that interferes with our destructor implementations
      # 0814-binary-tree-pruning
      0841-keys-and-rooms
