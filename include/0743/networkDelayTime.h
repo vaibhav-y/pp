@@ -3,22 +3,28 @@
 #endif
 
 #include <algorithm>
+#include <queue>
 #include <vector>
-
 
 namespace p0743 {
 class Solution {
 private:
   void propagate(const std::vector<std::vector<std::pair<int, int>>> &edges,
-                 std::vector<int> &arrival, int src, int now) {
-    for (auto &edge : edges[src]) {
-      int dest = edge.first;
-      int delay = edge.second;
+                 std::vector<int> &arrival, int src) {
+    std::queue<int> processing;
+    processing.push(src);
+    while (!processing.empty()) {
+      src = processing.front();
+      processing.pop();
+      for (auto &edge : edges[src]) {
+        int dest = edge.first;
+        int delay = edge.second;
 
-      // Only travese an edge if we found a shorter path leading to it
-      if (now + delay < arrival[dest]) {
-        arrival[dest] = now + delay;
-        propagate(edges, arrival, dest, arrival[dest]);
+        // Only travese an edge if we found a shorter path leading to it
+        if (arrival[src] + delay < arrival[dest]) {
+          arrival[dest] = arrival[src] + delay;
+          processing.push(dest);
+        }
       }
     }
   }
@@ -33,28 +39,20 @@ public:
     }
 
     arrival[K - 1] = 0;
-    propagate(edgeList, arrival, K - 1, 0);
+    propagate(edgeList, arrival, K - 1);
 
-    int delay = NEVER;
+    int delay = std::numeric_limits<int>::min();
 
     // If this is a DAG, then there are sources and sinks
     // we need to find the max time taken to arrive at all sinks
     for (int i = 0; i < arrival.size(); ++i) {
       if (arrival[i] == NEVER) {
         return -1;
-      }
-      if (edgeList[i].empty()) {
+      } else {
         delay = std::max(delay, arrival[i]);
       }
     }
-
-    if (delay != NEVER) {
-      return delay;
-    }
-
-    // We were bamboozled, and this wasn't a DAG, return the max over all
-    // elements
-    return *std::max_element(arrival.begin(), arrival.end());
+    return delay;
   }
 };
 } // namespace p0743
