@@ -58,6 +58,7 @@ set (TEST_TARGETS
      ## Identical to 449, but 'HARD'
      # 0297-serialize-and-deserialize-binary-tree
      0300-longest-increasing-subsequence
+     0310-minimum-height-trees
      0322-coin-change
      0334-increasing-triplet-subsequence
      0338-counting-bits

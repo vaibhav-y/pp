@@ -1,0 +1,19 @@
+* [[https://leetcode.com/problems/minimum-height-trees][Minimum Height Trees]]
+
+The question gives us a undirected acyclic graph, one with tree characteristics
+i.e. there is only 1 path between any two vertices and asks us to pick a root
+vertex to minimize the resulting tree height.
+
+** Intuition
+
+The resulting tree has to be 'balanced', if you think about it carefully. This
+would mean that we need to find a vertex that is equidistant from all leaves.
+
+The next step needed help, but we can extend our "two-pointer" tactics for
+solving this too.
+
+All the discovered leaves have 'pointers' on them, and we move inward till
+we have no more edges to traverse. Because there is only one path between two
+vertices, there are no shortcut edges, so we can keep doing this till we have 1
+or 2 vertices remaining to process.
+
