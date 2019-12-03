@@ -13,18 +13,18 @@ struct ListNode {
   int val;
   ListNode *next;
   ListNode(int x) : val(x), next(nullptr) {}
-
-  std::list<int> as_list() {
-    std::list<int> result;
-    ListNode *current = this;
-    while (current) {
-      result.push_back(current->val);
-      current = current->next;
-    }
-
-    return result;
-  }
 };
+
+bool operator==(const ListNode &lhs, const ListNode &rhs) {
+  if (lhs.val != rhs.val) {
+    return false;
+  }
+  if (lhs.next && rhs.next) {
+    return *lhs.next == *rhs.next;
+  }
+  return lhs.next == nullptr && rhs.next == nullptr;
+}
+
 
 void trimLeftTrailingSpaces(std::string &input) {
   input.erase(input.begin(),
@@ -77,10 +77,15 @@ void prettyPrintLinkedList(std::ostream &os, ListNode *node) {
   }
 
   if (node) {
-    os << node->val << std::endl;
-  } else {
-    os << "Empty LinkedList" << std::endl;
+    os << node->val;
   }
+}
+
+std::ostream &operator<<(std::ostream &os, ListNode *node) {
+  os << "[";
+  prettyPrintLinkedList(os, node);
+  os << "]";
+  return os;
 }
 
 #endif // INCLUDED_LISTNODE_H
