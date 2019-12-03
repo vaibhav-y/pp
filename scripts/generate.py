@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.7
 """
 Automatically generate source, include and test file skeletons for a new
 question given its title slug
