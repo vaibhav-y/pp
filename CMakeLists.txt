@@ -81,6 +81,7 @@ set (TEST_TARGETS
      # 0814-binary-tree-pruning
      0841-keys-and-rooms
      0848-shifting-letters
+     0876-middle-of-the-linked-list
      0890-find-and-replace-pattern
      0916-word-subsets
      0973-k-closest-points-to-origin
