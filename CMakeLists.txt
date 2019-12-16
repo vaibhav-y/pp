@@ -48,6 +48,7 @@ set (TEST_TARGETS
      0198-house-robber
      0199-binary-tree-right-side-view
      0207-course-schedule
+     0210-course-schedule-ii
      0215-kth-largest-element-in-an-array
      0222-count-complete-tree-nodes
      0230-kth-smallest-element-in-a-bst
