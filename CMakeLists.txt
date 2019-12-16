@@ -88,6 +88,7 @@ set (TEST_TARGETS
      0997-find-the-town-judge
      1042-flower-planting-with-no-adjacent
      1161-maximum-level-sum-of-a-binary-tree
+     1203-sort-items-by-groups-respecting-dependencies
 )
 
 foreach (TEST ${TEST_TARGETS})
